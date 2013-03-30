@@ -49,17 +49,6 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/guava-14.0.1.jar!/" />
-        </CLASSES>
-        <JAVADOC>
-          <root url="http://docs.guava-libraries.googlecode.com/git-history/release/javadoc/" />
-        </JAVADOC>
-        <SOURCES />
-      </library>
-    </orderEntry>
   </component>
 </module>
 
