@@ -29,8 +29,6 @@ public class Date {
 
     @Override
     public String toString() {
-        return "Date{" +
-                date.toString() +
-                '}';
+        return date.toString("yyyy/MM/dd");
     }
 }
