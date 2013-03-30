@@ -13,10 +13,14 @@
     <orderEntry type="module-library" scope="TEST">
       <library>
         <CLASSES>
-          <root url="jar://$APPLICATION_HOME_DIR$/lib/junit-4.10.jar!/" />
+          <root url="jar://$MODULE_DIR$/testlib/junit-4.11.jar!/" />
         </CLASSES>
-        <JAVADOC />
-        <SOURCES />
+        <JAVADOC>
+          <root url="jar://$MODULE_DIR$/../../lib/junit-4.11/junit-4.11-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/../../lib/junit-4.11/junit-4.11-sources.jar!/" />
+        </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" scope="TEST">
