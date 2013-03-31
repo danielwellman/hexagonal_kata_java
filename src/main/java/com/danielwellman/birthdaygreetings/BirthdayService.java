@@ -1,10 +1,10 @@
 package com.danielwellman.birthdaygreetings;
 
 public class BirthdayService {
-    private final Mailer mailer;
+    private final Notifier notifier;
 
-    public BirthdayService(Mailer mailer) {
-        this.mailer = mailer;
+    public BirthdayService(Notifier notifier) {
+        this.notifier = notifier;
     }
 
     public void sendGreetings(Date today) {

@@ -1,4 +1,4 @@
 package com.danielwellman.birthdaygreetings;
 
-public interface Mailer {
+public interface Notifier {
 }

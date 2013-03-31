@@ -3,14 +3,14 @@ package test.endtoend.birthdaygreetings;
 import com.danielwellman.birthdaygreetings.BirthdayService;
 
 public class ApplicationRunner {
-    FakeMailer fakeMailer = new FakeMailer();
+    FakeNotifier fakeNotifier = new FakeNotifier();
 
     public void runFor(FakeCalendar calendar) {
-        BirthdayService birthdayService = new BirthdayService(fakeMailer);
+        BirthdayService birthdayService = new BirthdayService(fakeNotifier);
         birthdayService.sendGreetings(calendar.today());
     }
 
     public void hasDeliveredGreetingTo(String email) {
-        fakeMailer.hasSentAMessageTo(email);
+        fakeNotifier.hasSentAMessageTo(email);
     }
 }
