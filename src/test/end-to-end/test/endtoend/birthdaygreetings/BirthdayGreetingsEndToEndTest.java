@@ -15,10 +15,10 @@ public class BirthdayGreetingsEndToEndTest {
     }
 
     @Test
-    public void sends_mail_if_person_has_birthday_today() throws IOException {
+    public void always_sends_mail_to_the_first_person_in_list_regardless_of_date() throws IOException {
         FakeCalendar today = new FakeCalendar(2012, 1, 15);
 
-        birthdayList.createContaining(entryFor("John", "Doe", "john.doe@foobar.com", 1970, 1, 15));
+        birthdayList.createContaining(entryFor("John", "Doe", "john.doe@foobar.com", 1970, 8, 22));
 
         ApplicationRunner application = new ApplicationRunner();
         application.runFor(today);
