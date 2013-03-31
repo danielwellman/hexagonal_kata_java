@@ -23,7 +23,8 @@ public class BirthdayGreetingsEndToEndTest {
         ApplicationRunner application = new ApplicationRunner();
         application.runFor(today);
 
-        application.hasDeliveredGreetingTo("john.doe@foobar.com");
+        // Note we may want to check with a 'real' SMTP server, or fake or something if we want to be more end-to-end.
+        application.hasDeliveredGreetingTo("john.doe@foobar.com"); // Note: We may want to check more of the mail details, including body?  Or a
     }
 
     private BirthdayEntryDetails entryFor(String firstName, String lastName, String email, int year, int month, int day) {

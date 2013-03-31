@@ -26,4 +26,10 @@ public class FakeNotifier implements Notifier {
             }
         };
     }
+
+    @Override
+    public void notify(String address) {
+        Email email = new Email(address);
+        messagesSentTo.add(email);
+    }
 }

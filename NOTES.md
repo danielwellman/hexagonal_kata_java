@@ -22,6 +22,12 @@
   birthday list and make sure it sends it to that person.  That way I can add the logic for multiple steps entries
   and skipped people later.
 
+## Ideas
+
+* End to end tests may want to use some form of SMTP simulator if we'd like to get more confidence that we're
+  correctly communicating with some form of SMTP server.  At the start, I chose to supply a fake implementation that
+  has nothing to do with email or SMTP.
+
 ## Guiding Principles
 
 * End to end tests should avoid being too coupled to production abstractions.  We want to avoid situations where
