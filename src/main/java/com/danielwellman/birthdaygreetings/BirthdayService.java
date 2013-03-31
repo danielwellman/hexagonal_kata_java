@@ -4,9 +4,9 @@ public class BirthdayService {
     private final Notifier notifier;
     private final PersonRegistry personRegistry;
 
-    public BirthdayService(Notifier notifier) {
+    public BirthdayService(Notifier notifier, PersonRegistry personRegistry) {
         this.notifier = notifier;
-        personRegistry = new FileSystemPersonRegistry();
+        this.personRegistry = personRegistry;
     }
 
     public void sendGreetings(Date today) {
