@@ -12,7 +12,7 @@ public class FakeBirthdayList {
 
     public static final Path BIRTHDAYS_PATH = Paths.get("birthdays.txt");
 
-    public void createContaining(BirthdayEntryDetails entry) {
+    public void createContaining(BirthdayEntryDetails entry) throws IOException {
         // TODO Possibly use a visitor or something if we want to simplify this code without encoding format in the details?
         //      ... or that might be overkill for this test.
         String header = "last_name, first_name, date_of_birth, email";
@@ -21,18 +21,11 @@ public class FakeBirthdayList {
                 entry.getBirthday() + ", " +
                 entry.getEmail();
         List<String> contents = Arrays.asList(header, line);
-        try {
-            Files.write(BIRTHDAYS_PATH, contents, Charset.defaultCharset());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
+        Files.write(BIRTHDAYS_PATH, contents, Charset.defaultCharset());
     }
 
-    public void clear() {
-        try {
-            Files.deleteIfExists(BIRTHDAYS_PATH);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public void clear() throws IOException {
+        Files.deleteIfExists(BIRTHDAYS_PATH);
     }
 }

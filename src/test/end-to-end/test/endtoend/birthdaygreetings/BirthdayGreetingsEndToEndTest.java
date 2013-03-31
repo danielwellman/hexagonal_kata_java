@@ -3,17 +3,19 @@ package test.endtoend.birthdaygreetings;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
+
 public class BirthdayGreetingsEndToEndTest {
 
     private final FakeBirthdayList birthdayList = new FakeBirthdayList();
 
     @Before
-    public void resetBirthdayList() {
+    public void resetBirthdayList() throws IOException {
         birthdayList.clear();
     }
 
     @Test
-    public void sends_mail_if_person_has_birthday_today() {
+    public void sends_mail_if_person_has_birthday_today() throws IOException {
         FakeCalendar today = new FakeCalendar(2012, 1, 15);
 
         birthdayList.createContaining(entryFor("John", "Doe", "john.doe@foobar.com", 1970, 1, 15));
