@@ -21,3 +21,12 @@
   it would build out the whole application!    ... I think I'll resolve it by having only one entry in the
   birthday list and make sure it sends it to that person.  That way I can add the logic for multiple steps entries
   and skipped people later.
+
+## Guiding Principles
+
+* End to end tests should avoid being too coupled to production abstractions.  We want to avoid situations where
+  the test behaves correctly using the production code, except the production code is actually doing the wrong thing,
+  causing the test to incorrectly pass.  There seem to be some fuzzy barriers on this though...
+  * For example, the `Date` class, which is a wrapper around the third-party Jodatime library.  The tests do need
+    to invoke the mailer given a specific date, hence this class must be used.  Theory: Sharing simple value objects
+    is not as risky.

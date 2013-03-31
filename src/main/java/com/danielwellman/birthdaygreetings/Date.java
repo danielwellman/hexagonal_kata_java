@@ -1,4 +1,4 @@
-package test.endtoend.birthdaygreetings;
+package com.danielwellman.birthdaygreetings;
 
 import org.joda.time.LocalDate;
 

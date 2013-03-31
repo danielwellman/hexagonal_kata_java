@@ -1,5 +1,7 @@
 package test.endtoend.birthdaygreetings;
 
+import com.danielwellman.birthdaygreetings.Date;
+
 public class BirthdayEntryBuilder {
     private String firstName;
     private String lastName;

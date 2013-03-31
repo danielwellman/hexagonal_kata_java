@@ -1,5 +1,6 @@
 package test.endtoend.birthdaygreetings;
 
+import com.danielwellman.birthdaygreetings.Mailer;
 import org.hamcrest.FeatureMatcher;
 import org.hamcrest.Matcher;
 
@@ -10,7 +11,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItem;
 import static org.junit.Assert.assertThat;
 
-public class FakeMailer {
+public class FakeMailer implements Mailer {
     private List<Email> messagesSentTo = new ArrayList<>();
 
     public void hasSentAMessageTo(String address) {
