@@ -1,6 +1,7 @@
 package test.endtoend.birthdaygreetings;
 
 import com.danielwellman.birthdaygreetings.Notifier;
+import com.danielwellman.birthdaygreetings.Person;
 import org.hamcrest.FeatureMatcher;
 import org.hamcrest.Matcher;
 
@@ -28,8 +29,8 @@ public class FakeNotifier implements Notifier {
     }
 
     @Override
-    public void notify(String address) {
-        Email email = new Email(address);
+    public void notify(Person person) {
+        Email email = new Email(person.emailAddress().toString());
         messagesSentTo.add(email);
     }
 }

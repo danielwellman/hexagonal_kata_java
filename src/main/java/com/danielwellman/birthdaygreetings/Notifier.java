@@ -1,5 +1,5 @@
 package com.danielwellman.birthdaygreetings;
 
 public interface Notifier {
-    void notify(String address);
+    void notify(Person person);
 }

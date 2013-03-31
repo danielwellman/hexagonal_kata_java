@@ -21,6 +21,10 @@
   it would build out the whole application!    ... I think I'll resolve it by having only one entry in the
   birthday list and make sure it sends it to that person.  That way I can add the logic for multiple steps entries
   and skipped people later.
+* I switched the Notifier from taking a String emailAddress to a Person.  This coupling means that the notifiers
+  now have full access to the new Person object.  I could have had the Notifier take an Address (email, or in the
+  future, some other social networking address) and a Name.  That is another direction of decoupling that may be
+  worth exploring.
 
 ## Ideas
 
