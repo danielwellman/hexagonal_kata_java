@@ -10,6 +10,7 @@ public class EmailNotifier implements Notifier {
     @Override
     public void notify(Person person) {
         Email email = new Email(person.emailAddress());
+        email.subject("Happy birthday!");
         postOffice.deliver(email);
     }
 }

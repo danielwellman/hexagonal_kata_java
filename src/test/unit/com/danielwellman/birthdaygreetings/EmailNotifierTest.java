@@ -7,17 +7,20 @@ import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Rule;
 import org.junit.Test;
 
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 public class EmailNotifierTest {
     @Rule
     public JUnitRuleMockery context = new JUnitRuleMockery();
 
+    final PostOffice postOffice = context.mock(PostOffice.class);
+
     @Test
     public void sendsAnEmailGreetingToPerson() {
-        final PostOffice postOffice = context.mock(PostOffice.class);
         context.checking(new Expectations() {{
-            oneOf(postOffice).deliver(with(anEmailTo("somebody@email.com")));
+            oneOf(postOffice).deliver(with(anEmail(to("somebody@email.com"), subject(containsString("Happy birthday")))));
         }});
 
         Person person = new Person(new EmailAddress("somebody@email.com"));
@@ -25,12 +28,27 @@ public class EmailNotifierTest {
         notifier.notify(person);
     }
 
-    private Matcher<Email> anEmailTo(String address) {
-        return new FeatureMatcher<Email, EmailAddress>(equalTo(new EmailAddress(address)), "an email sent to", "to") {
+    @SafeVarargs
+    private final Matcher<Email> anEmail(Matcher<Email>... matcher) {
+        return allOf(matcher);
+    }
+
+    private Matcher<Email> to(String address) {
+        return new FeatureMatcher<Email, EmailAddress>(equalTo(new EmailAddress(address)), "sent to", "to") {
 
             @Override
             protected EmailAddress featureValueOf(Email actual) {
                 return actual.to();
+            }
+        };
+    }
+
+    private Matcher<Email> subject(Matcher<String> matcher) {
+        return new FeatureMatcher<Email, String>(matcher, "a subject matching", "the subject") {
+
+            @Override
+            protected String featureValueOf(Email actual) {
+                return actual.subject();
             }
         };
     }
