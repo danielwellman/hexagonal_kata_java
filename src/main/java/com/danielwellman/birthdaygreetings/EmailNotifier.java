@@ -11,6 +11,8 @@ public class EmailNotifier implements Notifier {
     public void notify(Person person) {
         Email email = new Email(person.emailAddress());
         email.subject("Happy birthday!");
+        email.body("Happy birthday, dear " + person.firstName());
+        
         postOffice.deliver(email);
     }
 }

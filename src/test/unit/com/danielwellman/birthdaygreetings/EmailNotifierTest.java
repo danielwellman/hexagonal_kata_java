@@ -20,10 +20,12 @@ public class EmailNotifierTest {
     @Test
     public void sendsAnEmailGreetingToPerson() {
         context.checking(new Expectations() {{
-            oneOf(postOffice).deliver(with(anEmail(to("somebody@email.com"), subject(containsString("Happy birthday")))));
+            oneOf(postOffice).deliver(with(anEmail(to("somebody@email.com"),
+                                        subject(containsString("Happy birthday")),
+                                        body(containsString("Shannon")))));
         }});
 
-        Person person = new Person(new EmailAddress("somebody@email.com"));
+        Person person = new Person("Shannon", new EmailAddress("somebody@email.com"));
         EmailNotifier notifier = new EmailNotifier(postOffice);
         notifier.notify(person);
     }
@@ -51,5 +53,16 @@ public class EmailNotifierTest {
                 return actual.subject();
             }
         };
+    }
+
+    private Matcher<Email> body(Matcher<String> matcher) {
+        return new FeatureMatcher<Email, String>(matcher, "body matching", "the body") {
+
+            @Override
+            protected String featureValueOf(Email actual) {
+                return actual.body();
+            }
+        };
+
     }
 }

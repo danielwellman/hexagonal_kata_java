@@ -34,6 +34,7 @@
   terms of the application domain?"  Such an interface probably would not have SMTP details expressed in the
   interface, and would be written in terms of the domain.  I am puzzled, but am trying to start here with a
   PostOffice interface and an SMTPPostOffice implementation for production.
+* The Email - it's a class of values.  Might that want a deliver(PostOffice) method instead?
 
 ## Ideas
 
