@@ -25,6 +25,15 @@
   now have full access to the new Person object.  I could have had the Notifier take an Address (email, or in the
   future, some other social networking address) and a Name.  That is another direction of decoupling that may be
   worth exploring.
+* When implementing the EmailNotifier, I wasn't sure whether to implement it and use an integration test or a unit test.
+  If I picked unit, I thought that I could defer the actual SMTP internals to a collaborator.  Then I thought,
+  "Would that SMTP gateway be a peer or an internal?"  If it was a peer, I'd probably pass in a mock and
+  write a unit test.  If it were an internal, then there would be no need to write a separate test for that object,
+  and the EmailNotifierTest would be an integration test that would talk to some form of SMTP server.
+  I decided on going the unit route, but then I thought "What will the adapter interface look like - written in
+  terms of the application domain?"  Such an interface probably would not have SMTP details expressed in the
+  interface, and would be written in terms of the domain.  I am puzzled, but am trying to start here with a
+  PostOffice interface and an SMTPPostOffice implementation for production.
 
 ## Ideas
 
