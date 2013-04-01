@@ -35,6 +35,11 @@
   interface, and would be written in terms of the domain.  I am puzzled, but am trying to start here with a
   PostOffice interface and an SMTPPostOffice implementation for production.
 * The Email - it's a class of values.  Might that want a deliver(PostOffice) method instead?
+* I switched the end to end test to use a real EmailNotifier but instead use a fake PostOffice, rather than a fake
+  notifier.  The downside of this is that "email" is now a concept at the edge of the domain -- an adapter is
+  made specifically for e-mail.  I think I'm OK with this since email is in fact a domain concept of the person,
+  so it makes some sense that email is known inside the domain -- but sending mail requires an adapter.  We keep this
+  inside the domain language by using "PostOffice" instead of SMTPSender or something - thanks J. B. Rainsberger!
 
 ## Ideas
 

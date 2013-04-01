@@ -1,8 +1,7 @@
 package test.endtoend.birthdaygreetings;
 
 import com.danielwellman.birthdaygreetings.Email;
-import com.danielwellman.birthdaygreetings.Notifier;
-import com.danielwellman.birthdaygreetings.Person;
+import com.danielwellman.birthdaygreetings.PostOffice;
 import org.hamcrest.FeatureMatcher;
 import org.hamcrest.Matcher;
 
@@ -13,11 +12,16 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItem;
 import static org.junit.Assert.assertThat;
 
-public class FakeNotifier implements Notifier {
-    private List<Email> messagesSentTo = new ArrayList<>();
+class FakePostOffice implements PostOffice {
+    private List<Email> sentMessages = new ArrayList<>();
+
+    @Override
+    public void deliver(Email email) {
+        sentMessages.add(email);
+    }
 
     public void hasSentAMessageTo(String address) {
-        assertThat(messagesSentTo, hasItem(emailAddressedTo(address)));
+        assertThat(sentMessages, hasItem(emailAddressedTo(address)));
     }
 
     private Matcher<Email> emailAddressedTo(final String email) {
@@ -29,9 +33,4 @@ public class FakeNotifier implements Notifier {
         };
     }
 
-    @Override
-    public void notify(Person person) {
-        Email email = new Email(person.emailAddress());
-        messagesSentTo.add(email);
-    }
 }
