@@ -2,14 +2,9 @@ package com.danielwellman.birthdaygreetings;
 
 public class Person {
     private final String firstName;
-    private String lastName;
-    private EmailAddress emailAddress;
-    private Date birthday;
-
-    public Person(String firstName, EmailAddress emailAddress) {
-        this.firstName = firstName;
-        this.emailAddress = emailAddress;
-    }
+    private final String lastName;
+    private final EmailAddress emailAddress;
+    private final Date birthday;
 
     public Person(String firstName, String lastName, EmailAddress emailAddress, Date birthday) {
         this.firstName = firstName;

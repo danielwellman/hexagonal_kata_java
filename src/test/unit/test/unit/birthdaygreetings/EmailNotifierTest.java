@@ -1,5 +1,6 @@
 package test.unit.birthdaygreetings;
 
+import com.danielwellman.birthdaygreetings.Date;
 import com.danielwellman.birthdaygreetings.Email;
 import com.danielwellman.birthdaygreetings.EmailAddress;
 import com.danielwellman.birthdaygreetings.EmailNotifier;
@@ -30,7 +31,7 @@ public class EmailNotifierTest {
                                         body(containsString("Shannon")))));
         }});
 
-        Person person = new Person("Shannon", new EmailAddress("somebody@email.com"));
+        Person person = new Person("Shannon", "Lastname", new EmailAddress("somebody@email.com"), new Date(2009, 12, 1));
         EmailNotifier notifier = new EmailNotifier(postOffice);
         notifier.notify(person);
     }
