@@ -30,11 +30,11 @@ public class FileSystemPersonRegistry implements PersonRegistry {
     Person parse(String line) {
         Scanner scanner = new Scanner(line);
         scanner.useDelimiter(",\\s?");
+        String lastName = scanner.next();
         String firstName = scanner.next();
-        scanner.next(); // last name
-        scanner.next(); // birthday
+        String birthday = scanner.next();
         String email = scanner.next();
 
-        return new Person(firstName, new EmailAddress(email));
+        return new Person(firstName, lastName, new EmailAddress(email), Date.fromCommonFormat(birthday));
     }
 }

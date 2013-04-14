@@ -5,6 +5,8 @@ import org.junit.Test;
 
 import java.io.IOException;
 
+import static test.endtoend.birthdaygreetings.BirthdayEntryDetails.entryFor;
+
 public class BirthdayGreetingsEndToEndTest {
 
     private final FakeBirthdayList birthdayList = new FakeBirthdayList();
@@ -27,7 +29,4 @@ public class BirthdayGreetingsEndToEndTest {
         application.hasDeliveredGreetingTo("john.doe@foobar.com"); // Note: We may want to check more of the mail details, including body?  Or a
     }
 
-    private BirthdayEntryDetails entryFor(String firstName, String lastName, String email, int year, int month, int day) {
-        return new BirthdayEntryBuilder().withFirstName(firstName).withLastName(lastName).withEmail(email).withBirthday(year, month, day).build();
-    }
 }

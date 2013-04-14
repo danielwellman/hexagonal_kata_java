@@ -30,4 +30,8 @@ public class BirthdayEntryDetails {
     public Date getBirthday() {
         return birthday;
     }
+
+    public static BirthdayEntryDetails entryFor(String firstName, String lastName, String email, int year, int month, int day) {
+        return new BirthdayEntryBuilder().withFirstName(firstName).withLastName(lastName).withEmail(email).withBirthday(year, month, day).build();
+    }
 }

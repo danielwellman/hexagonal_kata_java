@@ -43,7 +43,8 @@
     void deliver(PostOffice postOffice);
   Which puts some behavior on the Email object, which is right now simply data fields.  I'm not strongly sold on it
   now, though, so taking a note and moving on.
-
+* What happens when the passed date format is invalid, at parse time?  How should the system respond to errors in
+  input data?
 
 ## Ideas
 
