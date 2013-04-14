@@ -45,6 +45,23 @@
   now, though, so taking a note and moving on.
 * What happens when the passed date format is invalid, at parse time?  How should the system respond to errors in
   input data?
+* In creating allPeople() in the PersonRegistry, I noted that it now returns a Set<Person>.  I'm thinking of the bits
+  in GOOS where they mention that returning a generic collection is possibly a smell or sign of a missing abstraction.
+  I might push this early and see.
+  As a quick experiment, I tried rewriting the code in BirthdayService to work with a People object rather than a
+  Set<Person>.  My initial experiment still felt procedural, though hides the internal collection of people:
+
+          People people = personRegistry.allPeople();
+          people.forEach(new Function<Person, Void>() {
+              public void apply(Person person) {
+                  notifier.notify(person);
+              }
+          });
+
+  I weighed this against creating a method on People called
+      void notify(Notifier notifier);
+  But I thought this felt like an odd coupling -- now People have a special feature to notify many folks?  This
+  initially felt like a strange coupling to me.
 
 ## Ideas
 

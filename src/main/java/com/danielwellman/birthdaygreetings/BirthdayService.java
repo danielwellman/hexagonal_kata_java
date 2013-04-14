@@ -1,5 +1,7 @@
 package com.danielwellman.birthdaygreetings;
 
+import java.util.Collection;
+
 public class BirthdayService {
     private final Notifier notifier;
     private final PersonRegistry personRegistry;
@@ -10,7 +12,9 @@ public class BirthdayService {
     }
 
     public void sendGreetings(Date today) {
-        Person person = personRegistry.firstPerson();
-        notifier.notify(person);
+        Collection<Person> people = personRegistry.allPeople();
+        for (Person person : people) {
+            notifier.notify(person);
+        }
     }
 }

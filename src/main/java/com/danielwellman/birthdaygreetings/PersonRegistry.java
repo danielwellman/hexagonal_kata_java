@@ -1,5 +1,7 @@
 package com.danielwellman.birthdaygreetings;
 
+import java.util.Collection;
+
 public interface PersonRegistry {
-    Person firstPerson();
+    Collection<Person> allPeople();
 }

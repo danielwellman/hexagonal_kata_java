@@ -5,6 +5,8 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,13 +15,18 @@ public class FileSystemPersonRegistry implements PersonRegistry {
     public static final Path FILE_PATH = Paths.get("birthdays.txt");
 
     @Override
-    public Person firstPerson() {
+    public Collection<Person> allPeople() {
+        Collection<Person> people = new HashSet<>();
         List<String> strings = allBirthdayEntries();
-        String firstLine = strings.get(1);
-        return parse(firstLine);
+        List<String> rowsWithoutHeader = strings.subList(1, strings.size());
+        for (String row : rowsWithoutHeader) {
+            Person parsed = parse(row);
+            people.add(parsed);
+        }
+        return people;
     }
 
-    List<String> allBirthdayEntries() {
+    private List<String> allBirthdayEntries() {
         try {
             return Files.readAllLines(FILE_PATH, Charset.defaultCharset());
         } catch (IOException e) {
@@ -27,7 +34,7 @@ public class FileSystemPersonRegistry implements PersonRegistry {
         }
     }
 
-    Person parse(String line) {
+    private Person parse(String line) {
         Scanner scanner = new Scanner(line);
         scanner.useDelimiter(",\\s?");
         String lastName = scanner.next();
