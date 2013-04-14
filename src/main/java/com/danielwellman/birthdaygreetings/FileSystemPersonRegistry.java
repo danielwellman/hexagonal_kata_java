@@ -16,14 +16,21 @@ public class FileSystemPersonRegistry implements PersonRegistry {
 
     @Override
     public Collection<Person> allPeople() {
+        return parseRegistryFile();
+    }
+
+    private Collection<Person> parseRegistryFile() {
         Collection<Person> people = new HashSet<>();
-        List<String> strings = allBirthdayEntries();
-        List<String> rowsWithoutHeader = strings.subList(1, strings.size());
-        for (String row : rowsWithoutHeader) {
+        for (String row : allEntriesInFile()) {
             Person parsed = parse(row);
             people.add(parsed);
         }
         return people;
+    }
+
+    private List<String> allEntriesInFile() {
+        List<String> strings = allBirthdayEntries();
+        return strings.subList(1, strings.size());
     }
 
     private List<String> allBirthdayEntries() {
