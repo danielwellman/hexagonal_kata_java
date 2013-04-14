@@ -5,24 +5,37 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FakeBirthdayList {
 
     public static final Path BIRTHDAYS_PATH = Paths.get("birthdays.txt");
 
-    public void createContaining(BirthdayEntryDetails entry) throws IOException {
-        // TODO Possibly use a visitor or something if we want to simplify this code without encoding format in the details?
-        //      ... or that might be overkill for this test.
+    public void createContaining(BirthdayEntryDetails... entries) throws IOException {
         String header = "last_name, first_name, date_of_birth, email";
-        String line = entry.getLastName() + ", " +
-                entry.getFirstName() + ", " +
-                entry.getBirthday() + ", " +
-                entry.getEmail();
-        List<String> contents = Arrays.asList(header, line);
+
+        List<String> contents = new ArrayList<>();
+        contents.add(header);
+        contents.addAll(toCsvRows(entries));
 
         Files.write(BIRTHDAYS_PATH, contents, Charset.defaultCharset());
+    }
+
+    private List<String> toCsvRows(BirthdayEntryDetails[] entries) {
+        List<String> result = new ArrayList<>();
+        for (BirthdayEntryDetails entry : entries) {
+            result.add(toCsvLine(entry));
+        }
+        return result;
+    }
+
+    // FUTURE This seems like it could live on BirthdayEntryDetails if we wanted...
+    private String toCsvLine(BirthdayEntryDetails entry) {
+        return entry.getLastName() + ", " +
+                        entry.getFirstName() + ", " +
+                        entry.getBirthday() + ", " +
+                        entry.getEmail();
     }
 
     public void clear() throws IOException {

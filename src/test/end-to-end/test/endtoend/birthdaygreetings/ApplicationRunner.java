@@ -12,8 +12,10 @@ public class ApplicationRunner {
         birthdayService.sendGreetings(calendar.today());
     }
 
-    public void hasDeliveredGreetingTo(String email) {
-        fakePostOffice.hasSentAMessageTo(email);
+    public void hasDeliveredGreetingTo(String... emails) {
+        for (String email : emails) {
+            fakePostOffice.hasSentAMessageTo(email);
+        }
     }
 
 }
