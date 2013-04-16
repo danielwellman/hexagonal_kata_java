@@ -8,8 +8,10 @@ import org.hamcrest.Matcher;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertThat;
 
 class FakePostOffice implements PostOffice {
@@ -33,4 +35,12 @@ class FakePostOffice implements PostOffice {
         };
     }
 
+    public void hasSentNoMessages() {
+        assertThat(sentMessages, empty());
+    }
+
+    public void hasNotSentAMessageTo(String email) {
+        assertThat(sentMessages, not(hasItem(emailAddressedTo(email))));
+
+    }
 }

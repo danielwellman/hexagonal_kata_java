@@ -34,4 +34,12 @@ public class Email {
     public void body(String newBody) {
         this.body = newBody;
     }
+
+    @Override
+    public String toString() {
+        return "Email{" +
+                "to=" + to +
+                ", subject='" + subject + '\'' +
+                '}';
+    }
 }

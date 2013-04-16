@@ -18,4 +18,13 @@ public class ApplicationRunner {
         }
     }
 
+    public void hasDeliveredNoGreetings() {
+        fakePostOffice.hasSentNoMessages();
+    }
+
+    public void hasNotDeliveredGreetingTo(String... emails) {
+        for (String email : emails) {
+            fakePostOffice.hasNotSentAMessageTo(email);
+        }
+    }
 }

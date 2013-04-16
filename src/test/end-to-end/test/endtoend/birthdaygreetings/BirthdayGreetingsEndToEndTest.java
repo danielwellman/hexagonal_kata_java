@@ -19,25 +19,28 @@ public class BirthdayGreetingsEndToEndTest {
     }
 
     @Test
-    public void always_sends_mail_to_the_first_person_in_list_regardless_of_date() throws IOException {
-        birthdayList.createContaining(entryFor("John", "Doe", "john.doe@foobar.com", 1970, 8, 22));
+    public void sends_no_mail_if_no_birthdays_are_today() throws IOException {
+        birthdayList.createContaining(entryFor("John", "Doe", "john.doe@foobar.com", 1970, 8, 22),
+                entryFor("Sarah", "Vane", "sarah.vane@mail.com", 1980, 1, 29));
 
         ApplicationRunner application = new ApplicationRunner();
         application.runFor(irrelevantDay);
 
-        application.hasDeliveredGreetingTo("john.doe@foobar.com"); // Note: We may want to check more of the mail details, including body?  Or a
+        application.hasDeliveredNoGreetings();
     }
 
     @Test
-    public void always_sends_mail_to_all_people_in_the_list_regardless_of_date() throws IOException {
+    public void sends_mail_to_all_people_in_list_whose_birthdays_are_today() throws IOException {
         birthdayList.createContaining(entryFor("John", "Doe", "john.doe@foobar.com", 1970, 8, 22),
-                                      entryFor("Sarah", "Vane", "sarah.vane@mail.com", 1980, 1, 29));
+                                      entryFor("Sarah", "Vane", "sarah.vane@mail.com", 1980, 1, 29),
+                                      entryFor("Zae", "Smith", "zsmith@name.com", 1980, 8, 22),
+                                      entryFor("Charles", "Kuro", "ckuro@email.com", 1980, 11, 3));
 
         ApplicationRunner application = new ApplicationRunner();
-        application.runFor(irrelevantDay);
+        application.runFor(new FakeCalendar(2013, 8, 22));
 
-        application.hasDeliveredGreetingTo("john.doe@foobar.com", "sarah.vane@mail.com");
-
+        application.hasDeliveredGreetingTo("john.doe@foobar.com", "zsmith@name.com");
+        application.hasNotDeliveredGreetingTo("sarah.vane@mail.com", "ckuro@email.com");
     }
 
 }
