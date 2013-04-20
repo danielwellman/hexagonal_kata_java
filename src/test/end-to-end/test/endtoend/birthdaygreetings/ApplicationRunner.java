@@ -3,7 +3,7 @@ package test.endtoend.birthdaygreetings;
 import com.danielwellman.birthdaygreetings.BirthdayService;
 import com.danielwellman.birthdaygreetings.EmailNotifier;
 import com.danielwellman.birthdaygreetings.FileSystemPeopleSource;
-import com.danielwellman.birthdaygreetings.FileSystemPersonRegistry;
+import com.danielwellman.birthdaygreetings.SourceFilteringPersonRegistry;
 
 import java.nio.file.Path;
 
@@ -16,7 +16,7 @@ public class ApplicationRunner {
     }
 
     public void runFor(FakeCalendar calendar) {
-        BirthdayService birthdayService = new BirthdayService(new EmailNotifier(fakePostOffice), new FileSystemPersonRegistry(new FileSystemPeopleSource(path)));
+        BirthdayService birthdayService = new BirthdayService(new EmailNotifier(fakePostOffice), new SourceFilteringPersonRegistry(new FileSystemPeopleSource(path)));
         birthdayService.sendGreetings(calendar.today());
     }
 

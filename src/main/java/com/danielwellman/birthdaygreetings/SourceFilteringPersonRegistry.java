@@ -2,11 +2,11 @@ package com.danielwellman.birthdaygreetings;
 
 import java.util.Collection;
 
-public class FileSystemPersonRegistry implements PersonRegistry {
+public class SourceFilteringPersonRegistry implements PersonRegistry {
 
     private final PeopleSource peopleSource;
 
-    public FileSystemPersonRegistry(FileSystemPeopleSource peopleSource) {
+    public SourceFilteringPersonRegistry(FileSystemPeopleSource peopleSource) {
         this.peopleSource = peopleSource;
     }
 
