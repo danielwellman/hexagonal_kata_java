@@ -43,4 +43,12 @@ public class Date {
         LocalDate jodaDate = LocalDate.parse(commonDateFormatString, DateTimeFormat.forPattern(COMMON_DATE_FORMAT));
         return new Date(jodaDate);
     }
+
+    public boolean sameMonthAndDayAs(Date other) {
+        // FUTURE Consider an implementation that does not rely on peeking into private fields
+        boolean sameMonthOfYear = this.date.getMonthOfYear() == other.date.getMonthOfYear();
+        boolean sameDayOfMonth = this.date.getDayOfMonth() == other.date.getDayOfMonth();
+
+        return sameMonthOfYear && sameDayOfMonth;
+    }
 }

@@ -21,6 +21,10 @@ public class Person {
         return firstName;
     }
 
+    public Date birthday() {
+        return birthday;
+    }
+
     // These equals and hash code implementations compare all values; I'm thinking in this case that
     // a Person isn't really an entity (if so, what would uniquely identify them, given this data?)
     // In this case, we treat the Person object like a value object, and these are equal only if all

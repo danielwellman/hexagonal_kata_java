@@ -1,7 +1,7 @@
 package com.danielwellman.birthdaygreetings;
 
 import java.util.Collection;
-import java.util.Collections;
+import java.util.HashSet;
 
 public class SourceFilteringPersonRegistry implements PersonRegistry {
 
@@ -17,8 +17,16 @@ public class SourceFilteringPersonRegistry implements PersonRegistry {
     }
 
     @Override
-    public Collection<Person> birthdaysOn(Date date) {
-        return Collections.emptyList();
+    public Collection<Person> birthdaysOn(Date targetDate) {
+        Collection<Person> filtered = new HashSet<>();
+
+        Collection<Person> all = peopleSource.allPeople();
+        for (Person person : all) {
+            if (person.birthday().sameMonthAndDayAs(targetDate)) {
+                filtered.add(person);
+            }
+        }
+        return filtered;
     }
 
 }

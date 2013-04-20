@@ -6,9 +6,12 @@ import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Rule;
 import org.junit.Test;
 
+import java.util.Arrays;
+
+import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.emptyCollectionOf;
-import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 
 public class SourceFilteringPersonRegistryTest {
     @Rule
@@ -21,20 +24,27 @@ public class SourceFilteringPersonRegistryTest {
     public void returnsEmptyCollectionIfNoBirthdaysToday() {
         context.checking(new Expectations() {{
             allowing(peopleSource).allPeople();
-            will(returnValue(createPersonWithBirthdayOn(new Date(2011, 1, 1))));
+            will(returnValue(Arrays.asList(createPersonWithBirthdayOn(new Date(2011, 1, 1)))));
         }});
         assertThat(registry.birthdaysOn(new Date(2030, 12, 31)), emptyCollectionOf(Person.class));
     }
 
 
     @Test
-    public void returnsSingleElementCollectionIfOnePersonHasBirthdayToday() {
-        final Person christmasBirthday = createPersonWithBirthdayOn(new Date(2011, 12, 31));
+    public void returnsAllPeopleWithBirthdayToday() {
+        final Person christmasBirthday2011 = createPersonWithBirthdayOn(new Date(2011, 12, 25));
+        final Person summerBirthday = createPersonWithBirthdayOn(new Date(2011, 8, 1));
+        final Person christmasBirthday2009 = createPersonWithBirthdayOn(new Date(2009, 12, 25));
+
         context.checking(new Expectations() {{
             allowing(peopleSource).allPeople();
-            will(returnValue(christmasBirthday));
+            will(returnValue(Arrays.asList(christmasBirthday2011, summerBirthday, christmasBirthday2009)));
         }});
-        assertThat(registry.birthdaysOn(new Date(2013, 12, 31)), contains(christmasBirthday));
+
+        //noinspection unchecked
+        assertThat(registry.birthdaysOn(new Date(2013, 12, 25)), allOf(
+                containsInAnyOrder(christmasBirthday2009, christmasBirthday2011)
+        ));
     }
 
     // TODO - Test with multiple birthdays returned?
