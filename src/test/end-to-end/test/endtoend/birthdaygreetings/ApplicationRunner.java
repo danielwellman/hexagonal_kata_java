@@ -5,13 +5,18 @@ import com.danielwellman.birthdaygreetings.EmailNotifier;
 import com.danielwellman.birthdaygreetings.FileSystemPeopleSource;
 import com.danielwellman.birthdaygreetings.FileSystemPersonRegistry;
 
-import java.nio.file.Paths;
+import java.nio.file.Path;
 
 public class ApplicationRunner {
+    private final Path path;
     FakePostOffice fakePostOffice = new FakePostOffice();
 
+    public ApplicationRunner(Path path) {
+        this.path = path;
+    }
+
     public void runFor(FakeCalendar calendar) {
-        BirthdayService birthdayService = new BirthdayService(new EmailNotifier(fakePostOffice), new FileSystemPersonRegistry(new FileSystemPeopleSource(Paths.get("birthdays.txt"))));
+        BirthdayService birthdayService = new BirthdayService(new EmailNotifier(fakePostOffice), new FileSystemPersonRegistry(new FileSystemPeopleSource(path)));
         birthdayService.sendGreetings(calendar.today());
     }
 

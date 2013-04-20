@@ -4,13 +4,16 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static test.endtoend.birthdaygreetings.BirthdayEntryDetails.entryFor;
 
 public class BirthdayGreetingsEndToEndTest {
 
-    private final FakeBirthdayList birthdayList = new FakeBirthdayList(Paths.get("birthdays.txt"));
+    private final Path sourceFile = Paths.get("birthdays.txt");
+    private final FakeBirthdayList birthdayList = new FakeBirthdayList(sourceFile);
+    private ApplicationRunner application = new ApplicationRunner(sourceFile);
 
     private final FakeCalendar irrelevantDay = new FakeCalendar(2012, 1, 15);
 
@@ -24,7 +27,6 @@ public class BirthdayGreetingsEndToEndTest {
         birthdayList.createContaining(entryFor("John", "Doe", "john.doe@foobar.com", 1970, 8, 22),
                 entryFor("Sarah", "Vane", "sarah.vane@mail.com", 1980, 1, 29));
 
-        ApplicationRunner application = new ApplicationRunner();
         application.runFor(irrelevantDay);
 
         application.hasDeliveredNoGreetings();
@@ -37,7 +39,6 @@ public class BirthdayGreetingsEndToEndTest {
                                       entryFor("Zae", "Smith", "zsmith@name.com", 1980, 8, 22),
                                       entryFor("Charles", "Kuro", "ckuro@email.com", 1980, 11, 3));
 
-        ApplicationRunner application = new ApplicationRunner();
         application.runFor(new FakeCalendar(2013, 8, 22));
 
         application.hasDeliveredGreetingTo("john.doe@foobar.com", "zsmith@name.com");
