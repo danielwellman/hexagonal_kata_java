@@ -8,6 +8,7 @@ import test.endtoend.birthdaygreetings.BirthdayEntryDetails;
 import test.endtoend.birthdaygreetings.FakeBirthdayList;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collection;
 
@@ -18,8 +19,9 @@ import static test.endtoend.birthdaygreetings.BirthdayEntryDetails.entryFor;
 
 public class FileSystemPeopleSourceTest {
 
-    private final FakeBirthdayList birthdayList = new FakeBirthdayList(Paths.get("birthdays.txt"));
-    private final PeopleSource peopleSource = new FileSystemPeopleSource(Paths.get("birthdays.txt"));
+    private final Path path = Paths.get("birthdays.txt");
+    private final FakeBirthdayList birthdayList = new FakeBirthdayList(path);
+    private final PeopleSource peopleSource = new FileSystemPeopleSource(path);
 
     @Before
     public void resetBirhdaysFile() throws IOException {
