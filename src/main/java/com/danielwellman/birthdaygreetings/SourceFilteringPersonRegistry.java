@@ -1,6 +1,7 @@
 package com.danielwellman.birthdaygreetings;
 
 import java.util.Collection;
+import java.util.Collections;
 
 public class SourceFilteringPersonRegistry implements PersonRegistry {
 
@@ -13,6 +14,11 @@ public class SourceFilteringPersonRegistry implements PersonRegistry {
     @Override
     public Collection<Person> allPeople() {
         return peopleSource.allPeople();
+    }
+
+    @Override
+    public Collection<Person> birthdaysOn(Date date) {
+        return Collections.emptyList();
     }
 
 }
