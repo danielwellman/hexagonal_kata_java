@@ -8,6 +8,7 @@ import test.endtoend.birthdaygreetings.BirthdayEntryDetails;
 import test.endtoend.birthdaygreetings.FakeBirthdayList;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.Collection;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -18,7 +19,7 @@ import static test.endtoend.birthdaygreetings.BirthdayEntryDetails.entryFor;
 public class FileSystemPeopleSourceTest {
 
     private final FakeBirthdayList birthdayList = new FakeBirthdayList();
-    private final PeopleSource peopleSource = new FileSystemPeopleSource();
+    private final PeopleSource peopleSource = new FileSystemPeopleSource(Paths.get("birthdays.txt"));
 
     @Before
     public void resetBirhdaysFile() throws IOException {

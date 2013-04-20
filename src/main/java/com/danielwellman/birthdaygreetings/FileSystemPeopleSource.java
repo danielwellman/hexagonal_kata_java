@@ -4,16 +4,16 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 
 public class FileSystemPeopleSource implements PeopleSource {
-    public static final Path FILE_PATH = Paths.get("birthdays.txt");
+    private final Path path;
 
-    public FileSystemPeopleSource() {
+    public FileSystemPeopleSource(Path path) {
+        this.path = path;
     }
 
     @Override
@@ -33,7 +33,7 @@ public class FileSystemPeopleSource implements PeopleSource {
 
     List<String> allBirthdayEntries() {
         try {
-            return Files.readAllLines(FILE_PATH, Charset.defaultCharset());
+            return Files.readAllLines(path, Charset.defaultCharset());
         } catch (IOException e) {
             throw new BirthdayListUnavailableException();
         }
