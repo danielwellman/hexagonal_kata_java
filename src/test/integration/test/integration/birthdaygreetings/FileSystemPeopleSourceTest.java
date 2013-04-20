@@ -18,7 +18,7 @@ import static test.endtoend.birthdaygreetings.BirthdayEntryDetails.entryFor;
 
 public class FileSystemPeopleSourceTest {
 
-    private final FakeBirthdayList birthdayList = new FakeBirthdayList();
+    private final FakeBirthdayList birthdayList = new FakeBirthdayList(Paths.get("birthdays.txt"));
     private final PeopleSource peopleSource = new FileSystemPeopleSource(Paths.get("birthdays.txt"));
 
     @Before

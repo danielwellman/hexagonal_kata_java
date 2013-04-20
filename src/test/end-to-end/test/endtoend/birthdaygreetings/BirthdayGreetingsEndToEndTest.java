@@ -4,12 +4,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 
 import static test.endtoend.birthdaygreetings.BirthdayEntryDetails.entryFor;
 
 public class BirthdayGreetingsEndToEndTest {
 
-    private final FakeBirthdayList birthdayList = new FakeBirthdayList();
+    private final FakeBirthdayList birthdayList = new FakeBirthdayList(Paths.get("birthdays.txt"));
 
     private final FakeCalendar irrelevantDay = new FakeCalendar(2012, 1, 15);
 

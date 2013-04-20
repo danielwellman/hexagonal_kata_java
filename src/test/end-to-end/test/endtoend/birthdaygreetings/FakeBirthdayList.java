@@ -4,13 +4,16 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FakeBirthdayList {
 
-    public static final Path BIRTHDAYS_PATH = Paths.get("birthdays.txt");
+    private final Path path;
+
+    public FakeBirthdayList(Path path) {
+        this.path = path;
+    }
 
     public void createContaining(BirthdayEntryDetails... entries) throws IOException {
         String header = "last_name, first_name, date_of_birth, email";
@@ -19,7 +22,7 @@ public class FakeBirthdayList {
         contents.add(header);
         contents.addAll(toCsvRows(entries));
 
-        Files.write(BIRTHDAYS_PATH, contents, Charset.defaultCharset());
+        Files.write(path, contents, Charset.defaultCharset());
     }
 
     private List<String> toCsvRows(BirthdayEntryDetails[] entries) {
@@ -39,6 +42,6 @@ public class FakeBirthdayList {
     }
 
     public void clear() throws IOException {
-        Files.deleteIfExists(BIRTHDAYS_PATH);
+        Files.deleteIfExists(path);
     }
 }
