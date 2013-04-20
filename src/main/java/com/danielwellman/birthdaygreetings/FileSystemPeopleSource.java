@@ -26,12 +26,12 @@ public class FileSystemPeopleSource implements PeopleSource {
         return people;
     }
 
-    List<String> allEntriesInFile() {
+    private List<String> allEntriesInFile() {
         List<String> strings = allBirthdayEntries();
         return strings.subList(1, strings.size());
     }
 
-    List<String> allBirthdayEntries() {
+    private List<String> allBirthdayEntries() {
         try {
             return Files.readAllLines(path, Charset.defaultCharset());
         } catch (IOException e) {
@@ -39,7 +39,7 @@ public class FileSystemPeopleSource implements PeopleSource {
         }
     }
 
-    Person parse(String line) {
+    private Person parse(String line) {
         Scanner scanner = new Scanner(line);
         scanner.useDelimiter(",\\s?");
         String lastName = scanner.next();
