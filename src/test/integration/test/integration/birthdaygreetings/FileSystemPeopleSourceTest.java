@@ -1,9 +1,6 @@
 package test.integration.birthdaygreetings;
 
-import com.danielwellman.birthdaygreetings.Date;
-import com.danielwellman.birthdaygreetings.EmailAddress;
-import com.danielwellman.birthdaygreetings.FileSystemPersonRegistry;
-import com.danielwellman.birthdaygreetings.Person;
+import com.danielwellman.birthdaygreetings.*;
 import org.hamcrest.FeatureMatcher;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,10 +15,10 @@ import static org.hamcrest.core.IsCollectionContaining.hasItem;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static test.endtoend.birthdaygreetings.BirthdayEntryDetails.entryFor;
 
-public class FileSystemPersonRegistryTest {
+public class FileSystemPeopleSourceTest {
 
     private final FakeBirthdayList birthdayList = new FakeBirthdayList();
-    private final FileSystemPersonRegistry registry = new FileSystemPersonRegistry();
+    private final PeopleSource peopleSource = new FileSystemPeopleSource();
 
     @Before
     public void resetBirhdaysFile() throws IOException {
@@ -33,7 +30,7 @@ public class FileSystemPersonRegistryTest {
         birthdayList.createContaining(entryFor("Jenny", "Saskatoon", "jenny@saskato.on", 2001, 1, 14));
 
         Person expectedPerson = new Person("Jenny", "Saskatoon", new EmailAddress("jenny@saskato.on"), new Date(2001, 1, 14));
-        assertThat(registry.allPeople(), hasItem(expectedPerson));
+        assertThat(peopleSource.allPeople(), hasItem(expectedPerson));
     }
 
     @Test
@@ -44,7 +41,7 @@ public class FileSystemPersonRegistryTest {
                 anEntryForAPersonWithEmail("me@dev.com")
         );
 
-        Collection<Person> people = registry.allPeople();
+        Collection<Person> people = peopleSource.allPeople();
         assertThat(people, hasItem(personWithEmail("jenny@saskato.on")));
         // STRANGE The JUnit/Hamcrest failure message here is strange to me:
         //        Expected: a collection containing a person with email <frank@somebody.com>
