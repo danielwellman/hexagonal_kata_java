@@ -12,11 +12,6 @@ public class SourceFilteringPersonRegistry implements PersonRegistry {
     }
 
     @Override
-    public Collection<Person> allPeople() {
-        return peopleSource.allPeople();
-    }
-
-    @Override
     public Collection<Person> birthdaysOn(Date targetDate) {
         Collection<Person> filtered = new HashSet<>();
 
