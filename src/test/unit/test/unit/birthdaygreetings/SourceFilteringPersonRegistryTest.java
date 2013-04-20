@@ -47,10 +47,6 @@ public class SourceFilteringPersonRegistryTest {
         ));
     }
 
-    // TODO - Test with multiple birthdays returned?
-    // TODO - Test on same birthday and year?
-
-
     private Person createPersonWithBirthdayOn(Date birthday) {
         return new Person("firstName", "lastName", new EmailAddress("whatever@email.com"), birthday);
     }

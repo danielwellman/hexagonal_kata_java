@@ -16,6 +16,14 @@ public class Date {
         this.date = date;
     }
 
+    public boolean sameMonthAndDayAs(Date other) {
+        // FUTURE Consider an implementation that does not rely on peeking into private fields
+        boolean sameMonthOfYear = this.date.getMonthOfYear() == other.date.getMonthOfYear();
+        boolean sameDayOfMonth = this.date.getDayOfMonth() == other.date.getDayOfMonth();
+
+        return sameMonthOfYear && sameDayOfMonth;
+    }
+
     @SuppressWarnings("RedundantIfStatement")
     @Override
     public boolean equals(Object o) {
@@ -44,11 +52,4 @@ public class Date {
         return new Date(jodaDate);
     }
 
-    public boolean sameMonthAndDayAs(Date other) {
-        // FUTURE Consider an implementation that does not rely on peeking into private fields
-        boolean sameMonthOfYear = this.date.getMonthOfYear() == other.date.getMonthOfYear();
-        boolean sameDayOfMonth = this.date.getDayOfMonth() == other.date.getDayOfMonth();
-
-        return sameMonthOfYear && sameDayOfMonth;
-    }
 }
