@@ -6,7 +6,7 @@ public class SourceFilteringPersonRegistry implements PersonRegistry {
 
     private final PeopleSource peopleSource;
 
-    public SourceFilteringPersonRegistry(FileSystemPeopleSource peopleSource) {
+    public SourceFilteringPersonRegistry(PeopleSource peopleSource) {
         this.peopleSource = peopleSource;
     }
 
