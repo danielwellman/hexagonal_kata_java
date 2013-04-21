@@ -21,7 +21,7 @@ public class InMemoryPersonRegistry implements PersonRegistry {
 
         Collection<Person> all = peopleSource.allPeople();
         for (Person person : all) {
-            if (person.birthday().sameMonthAndDayAs(targetDate)) {
+            if (person.sameBirthday(targetDate)) {
                 filtered.add(person);
             }
         }

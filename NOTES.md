@@ -90,6 +90,8 @@
     I am leaning towards having it on the Person, though that makes me think I might have a value object that I'd
     want to mock in my BirthdayService test.  That is, I'll probably want to make sure that the service asks
     something for the effective date, and then looks up the list of people in the registry.  I'll consider this...
+* Birthday and Date domain notes -- For checking birthday, we only want to know if the given date's month and day
+  are the same as the person's birthday.  There may be a case for a new type here - a MonthAndDay.
 
 ## Ideas
 
