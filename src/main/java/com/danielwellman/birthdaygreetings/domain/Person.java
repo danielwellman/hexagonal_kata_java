@@ -1,24 +1,22 @@
 package com.danielwellman.birthdaygreetings.domain;
 
 public class Person {
-    private final String firstName;
-    private final String lastName;
+    private final Name name;
     private final EmailAddress emailAddress;
     private final Date birthday;
 
     public Person(Name name, EmailAddress emailAddress, Date birthday) {
-        this.firstName = name.getFirstName();
-        this.lastName = name.getLastName();
+        this.name = name;
         this.emailAddress = emailAddress;
         this.birthday = birthday;
     }
 
-    public EmailAddress emailAddress() {
-        return emailAddress;
+    public Name name() {
+        return this.name;
     }
 
-    public String firstName() {
-        return firstName;
+    public EmailAddress emailAddress() {
+        return emailAddress;
     }
 
     public boolean sameBirthday(Date targetDate) {
@@ -42,28 +40,25 @@ public class Person {
         if (birthday != null ? !birthday.equals(person.birthday) : person.birthday != null) return false;
         if (emailAddress != null ? !emailAddress.equals(person.emailAddress) : person.emailAddress != null)
             return false;
-        if (firstName != null ? !firstName.equals(person.firstName) : person.firstName != null) return false;
-        if (lastName != null ? !lastName.equals(person.lastName) : person.lastName != null) return false;
+        if (name != null ? !name.equals(person.name) : person.name != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = firstName != null ? firstName.hashCode() : 0;
-        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-        result = 31 * result + (emailAddress != null ? emailAddress.hashCode() : 0);
+        int result = emailAddress != null ? emailAddress.hashCode() : 0;
         result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
         return "Person{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", emailAddress=" + emailAddress +
+                "name=" + name +
                 ", birthday=" + birthday +
+                ", emailAddress=" + emailAddress +
                 '}';
     }
 }
