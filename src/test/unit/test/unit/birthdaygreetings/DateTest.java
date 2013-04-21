@@ -1,6 +1,6 @@
 package test.unit.birthdaygreetings;
 
-import com.danielwellman.birthdaygreetings.Date;
+import com.danielwellman.birthdaygreetings.domain.Date;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;

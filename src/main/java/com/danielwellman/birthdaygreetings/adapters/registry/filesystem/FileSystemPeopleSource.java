@@ -1,4 +1,9 @@
-package com.danielwellman.birthdaygreetings;
+package com.danielwellman.birthdaygreetings.adapters.registry.filesystem;
+
+import com.danielwellman.birthdaygreetings.domain.BirthdayListUnavailableException;
+import com.danielwellman.birthdaygreetings.domain.Date;
+import com.danielwellman.birthdaygreetings.domain.EmailAddress;
+import com.danielwellman.birthdaygreetings.domain.Person;
 
 import java.io.IOException;
 import java.nio.charset.Charset;

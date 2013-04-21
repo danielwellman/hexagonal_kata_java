@@ -1,11 +1,6 @@
 package test.unit.birthdaygreetings;
 
-import com.danielwellman.birthdaygreetings.Date;
-import com.danielwellman.birthdaygreetings.Email;
-import com.danielwellman.birthdaygreetings.EmailAddress;
-import com.danielwellman.birthdaygreetings.EmailNotifier;
-import com.danielwellman.birthdaygreetings.Person;
-import com.danielwellman.birthdaygreetings.PostOffice;
+import com.danielwellman.birthdaygreetings.domain.*;
 import org.hamcrest.FeatureMatcher;
 import org.hamcrest.Matcher;
 import org.jmock.Expectations;

@@ -1,4 +1,8 @@
-package com.danielwellman.birthdaygreetings;
+package com.danielwellman.birthdaygreetings.adapters.registry.filesystem;
+
+import com.danielwellman.birthdaygreetings.domain.Date;
+import com.danielwellman.birthdaygreetings.domain.Person;
+import com.danielwellman.birthdaygreetings.domain.PersonRegistry;
 
 import java.util.Collection;
 import java.util.HashSet;

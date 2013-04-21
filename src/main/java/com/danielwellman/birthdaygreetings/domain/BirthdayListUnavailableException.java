@@ -1,4 +1,4 @@
-package com.danielwellman.birthdaygreetings;
+package com.danielwellman.birthdaygreetings.domain;
 
 public class BirthdayListUnavailableException extends RuntimeException {
     public BirthdayListUnavailableException() {

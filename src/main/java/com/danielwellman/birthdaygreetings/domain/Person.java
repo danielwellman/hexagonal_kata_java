@@ -1,4 +1,4 @@
-package com.danielwellman.birthdaygreetings;
+package com.danielwellman.birthdaygreetings.domain;
 
 public class Person {
     private final String firstName;

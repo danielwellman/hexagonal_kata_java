@@ -1,4 +1,4 @@
-package com.danielwellman.birthdaygreetings;
+package com.danielwellman.birthdaygreetings.domain;
 
 /**
  * An email message contents.

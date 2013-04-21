@@ -1,4 +1,4 @@
-package com.danielwellman.birthdaygreetings;
+package com.danielwellman.birthdaygreetings.domain;
 
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;

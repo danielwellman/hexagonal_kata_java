@@ -1,6 +1,10 @@
 package test.integration.birthdaygreetings;
 
-import com.danielwellman.birthdaygreetings.*;
+import com.danielwellman.birthdaygreetings.adapters.registry.filesystem.FileSystemPeopleSource;
+import com.danielwellman.birthdaygreetings.adapters.registry.filesystem.PeopleSource;
+import com.danielwellman.birthdaygreetings.domain.Date;
+import com.danielwellman.birthdaygreetings.domain.EmailAddress;
+import com.danielwellman.birthdaygreetings.domain.Person;
 import org.hamcrest.FeatureMatcher;
 import org.junit.Before;
 import org.junit.Test;

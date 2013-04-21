@@ -1,9 +1,9 @@
 package test.endtoend.birthdaygreetings;
 
-import com.danielwellman.birthdaygreetings.BirthdayService;
-import com.danielwellman.birthdaygreetings.EmailNotifier;
-import com.danielwellman.birthdaygreetings.FileSystemPeopleSource;
-import com.danielwellman.birthdaygreetings.SourceFilteringPersonRegistry;
+import com.danielwellman.birthdaygreetings.adapters.registry.filesystem.FileSystemPeopleSource;
+import com.danielwellman.birthdaygreetings.adapters.registry.filesystem.SourceFilteringPersonRegistry;
+import com.danielwellman.birthdaygreetings.domain.BirthdayService;
+import com.danielwellman.birthdaygreetings.domain.EmailNotifier;
 
 import java.nio.file.Path;
 

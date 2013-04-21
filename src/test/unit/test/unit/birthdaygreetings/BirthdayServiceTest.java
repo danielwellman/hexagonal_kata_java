@@ -1,6 +1,6 @@
 package test.unit.birthdaygreetings;
 
-import com.danielwellman.birthdaygreetings.*;
+import com.danielwellman.birthdaygreetings.domain.*;
 import org.jmock.Expectations;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Rule;

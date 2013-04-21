@@ -1,4 +1,4 @@
-package com.danielwellman.birthdaygreetings;
+package com.danielwellman.birthdaygreetings.domain;
 
 public class EmailNotifier implements Notifier {
     private final PostOffice postOffice;

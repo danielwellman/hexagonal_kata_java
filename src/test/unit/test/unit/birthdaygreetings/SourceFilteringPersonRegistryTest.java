@@ -1,6 +1,10 @@
 package test.unit.birthdaygreetings;
 
-import com.danielwellman.birthdaygreetings.*;
+import com.danielwellman.birthdaygreetings.adapters.registry.filesystem.PeopleSource;
+import com.danielwellman.birthdaygreetings.adapters.registry.filesystem.SourceFilteringPersonRegistry;
+import com.danielwellman.birthdaygreetings.domain.Date;
+import com.danielwellman.birthdaygreetings.domain.EmailAddress;
+import com.danielwellman.birthdaygreetings.domain.Person;
 import org.jmock.Expectations;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Rule;

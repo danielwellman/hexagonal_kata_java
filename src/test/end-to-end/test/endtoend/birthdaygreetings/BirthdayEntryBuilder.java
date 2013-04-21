@@ -1,6 +1,6 @@
 package test.endtoend.birthdaygreetings;
 
-import com.danielwellman.birthdaygreetings.Date;
+import com.danielwellman.birthdaygreetings.domain.Date;
 
 public class BirthdayEntryBuilder {
     private String firstName;

@@ -1,17 +1,14 @@
 package test.endtoend.birthdaygreetings;
 
-import com.danielwellman.birthdaygreetings.Email;
-import com.danielwellman.birthdaygreetings.PostOffice;
+import com.danielwellman.birthdaygreetings.domain.Email;
+import com.danielwellman.birthdaygreetings.domain.PostOffice;
 import org.hamcrest.FeatureMatcher;
 import org.hamcrest.Matcher;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.Matchers.empty;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasItem;
-import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
 class FakePostOffice implements PostOffice {
