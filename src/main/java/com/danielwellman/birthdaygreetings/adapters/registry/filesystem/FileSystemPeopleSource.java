@@ -1,9 +1,6 @@
 package com.danielwellman.birthdaygreetings.adapters.registry.filesystem;
 
-import com.danielwellman.birthdaygreetings.domain.BirthdayListUnavailableException;
-import com.danielwellman.birthdaygreetings.domain.Date;
-import com.danielwellman.birthdaygreetings.domain.EmailAddress;
-import com.danielwellman.birthdaygreetings.domain.Person;
+import com.danielwellman.birthdaygreetings.domain.*;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -52,6 +49,6 @@ public class FileSystemPeopleSource implements PeopleSource {
         String birthday = scanner.next();
         String email = scanner.next();
 
-        return new Person(firstName, lastName, new EmailAddress(email), Date.fromCommonFormat(birthday));
+        return new Person(new Name(firstName, lastName), new EmailAddress(email), Date.fromCommonFormat(birthday));
     }
 }

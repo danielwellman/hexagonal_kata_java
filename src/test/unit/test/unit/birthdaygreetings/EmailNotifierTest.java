@@ -26,7 +26,7 @@ public class EmailNotifierTest {
                                         body(containsString("Shannon")))));
         }});
 
-        Person person = new Person("Shannon", "Lastname", new EmailAddress("somebody@email.com"), new Date(2009, 12, 1));
+        Person person = new Person(new Name("Shannon", "Lastname"), new EmailAddress("somebody@email.com"), new Date(2009, 12, 1));
         EmailNotifier notifier = new EmailNotifier(postOffice);
         notifier.notify(person);
     }

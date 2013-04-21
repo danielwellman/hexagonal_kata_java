@@ -6,9 +6,9 @@ public class Person {
     private final EmailAddress emailAddress;
     private final Date birthday;
 
-    public Person(String firstName, String lastName, EmailAddress emailAddress, Date birthday) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Person(Name name, EmailAddress emailAddress, Date birthday) {
+        this.firstName = name.getFirstName();
+        this.lastName = name.getLastName();
         this.emailAddress = emailAddress;
         this.birthday = birthday;
     }

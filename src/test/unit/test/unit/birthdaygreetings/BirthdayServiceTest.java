@@ -18,8 +18,8 @@ public class BirthdayServiceTest {
     @Test
     public void notifiesAllPeopleReturnedForToday() {
         final Date anyDate = new Date(2003, 8, 22);
-        final Person aPerson = new Person("someName", "lastNames", new EmailAddress("whatever@foo.com"), new Date(2013, 9, 1));
-        final Person anotherPerson = new Person("another", "someLastName", new EmailAddress("whoever@foo.com"), new Date(2013, 9, 2));
+        final Person aPerson = new Person(new Name("someName", "lastNames"), new EmailAddress("whatever@foo.com"), new Date(2013, 9, 1));
+        final Person anotherPerson = new Person(new Name("another", "someLastName"), new EmailAddress("whoever@foo.com"), new Date(2013, 9, 2));
 
         context.checking(new Expectations() {
             {

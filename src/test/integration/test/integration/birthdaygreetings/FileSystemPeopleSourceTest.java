@@ -4,6 +4,7 @@ import com.danielwellman.birthdaygreetings.adapters.registry.filesystem.FileSyst
 import com.danielwellman.birthdaygreetings.adapters.registry.filesystem.PeopleSource;
 import com.danielwellman.birthdaygreetings.domain.Date;
 import com.danielwellman.birthdaygreetings.domain.EmailAddress;
+import com.danielwellman.birthdaygreetings.domain.Name;
 import com.danielwellman.birthdaygreetings.domain.Person;
 import org.hamcrest.FeatureMatcher;
 import org.junit.Before;
@@ -36,7 +37,7 @@ public class FileSystemPeopleSourceTest {
     public void correctlyParsesAPerson() throws IOException {
         birthdayList.createContaining(entryFor("Jenny", "Saskatoon", "jenny@saskato.on", 2001, 1, 14));
 
-        Person expectedPerson = new Person("Jenny", "Saskatoon", new EmailAddress("jenny@saskato.on"), new Date(2001, 1, 14));
+        Person expectedPerson = new Person(new Name("Jenny", "Saskatoon"), new EmailAddress("jenny@saskato.on"), new Date(2001, 1, 14));
         assertThat(peopleSource.allPeople(), hasItem(expectedPerson));
     }
 

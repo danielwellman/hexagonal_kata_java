@@ -4,6 +4,7 @@ import com.danielwellman.birthdaygreetings.adapters.registry.filesystem.InMemory
 import com.danielwellman.birthdaygreetings.adapters.registry.filesystem.PeopleSource;
 import com.danielwellman.birthdaygreetings.domain.Date;
 import com.danielwellman.birthdaygreetings.domain.EmailAddress;
+import com.danielwellman.birthdaygreetings.domain.Name;
 import com.danielwellman.birthdaygreetings.domain.Person;
 import org.jmock.Expectations;
 import org.jmock.integration.junit4.JUnitRuleMockery;
@@ -52,6 +53,6 @@ public class InMemoryPersonRegistryTest {
     }
 
     private Person createPersonWithBirthdayOn(Date birthday) {
-        return new Person("firstName", "lastName", new EmailAddress("whatever@email.com"), birthday);
+        return new Person(new Name("firstName", "lastName"), new EmailAddress("whatever@email.com"), birthday);
     }
 }
