@@ -62,6 +62,34 @@
       void notify(Notifier notifier);
   But I thought this felt like an odd coupling -- now People have a special feature to notify many folks?  This
   initially felt like a strange coupling to me.
+* I split up the adapter portion of the PersonRegistry.  At first I thought I'd implement everything - the file
+  loading, parsing, and filtering - in one object.  That felt like a lot of responsibilities for one class, so
+  I split it up the responsibilities like so:
+    - The in-memory implementation of the PersonRegistry has a PeopleSource that can get the list of people.
+      That leaves this registry implementation's job to filter the appropriate people given their birthdays.
+    - An integration test checks the PeopleSource, which loads a file, parses each line, and returns a collection of
+      People.  This object may still have responsibilities that could be split up, but for now I'm OK with it living
+      in all in one class.  As an exercise, I may try to split up the parsing a bit more into a more declarative
+      format.
+    - Therefore, the in-memory implementation of the PersonRegistry can be unit tested, mocking out the collaborating
+      PeopleSource.  This implementation is essentially a filter.
+    - It still feels appropriate to me that the PersonRegistry lives in the adapter layer, since I can imagine
+      implementing a SQL or other database adapter which might implement the filtering using the tools of that
+      datasource (SQL where clauses, etc.)
+    - I can imagine implementing what J. B. Rainsberger calls "contract tests" for the PersonRegistry to make sure
+      the contracts are obeyed by all implementations.
+* Thought: When considering how to build the "handle leap day birthdays" story, I at first thought I would put the
+  comparison in the PersonRegistry implementation.  Then I realized that this was domain logic, and seemed like it
+  could be implemented in the domain layer.  This meant that the PersonRegistry implementation (in-memory with a file
+  system data source) would really be "find all people with a birthday on the given date", and something in the
+  domain figures out the appropriate date to ask for, given the current year.
+  * I brainstormed some ideas of where this comparison logic could live:
+      * Directly in the BirthdayService.
+      * On the Person.  Something like "Give me your effective birthday given this year/date".
+      * In some sort of strategy used by the BirthdayService.
+    I am leaning towards having it on the Person, though that makes me think I might have a value object that I'd
+    want to mock in my BirthdayService test.  That is, I'll probably want to make sure that the service asks
+    something for the effective date, and then looks up the list of people in the registry.  I'll consider this...
 
 ## Ideas
 
