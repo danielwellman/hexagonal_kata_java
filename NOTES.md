@@ -80,7 +80,10 @@
       the contracts are obeyed by all implementations.
 * Thought: When considering how to build the "handle leap day birthdays" story, I at first thought I would put the
   comparison in the PersonRegistry implementation.  Then I realized that this was domain logic, and seemed like it
-  could be implemented in the domain layer.  This meant that the PersonRegistry implementation (in-memory with a file
+  could be implemented in the domain layer.  Said another way, if we added new adapter implementations, I would be
+  hesitant to reimplement this logic every single time - it feels like it would be duplication, and easy to forget
+  that this logic needed to be implemented.  (One way around this could be to pass some sort of object to the
+  Registry that handles this responsibility).  This meant that the PersonRegistry implementation (in-memory with a file
   system data source) would really be "find all people with a birthday on the given date", and something in the
   domain figures out the appropriate date to ask for, given the current year.
   * I brainstormed some ideas of where this comparison logic could live:
