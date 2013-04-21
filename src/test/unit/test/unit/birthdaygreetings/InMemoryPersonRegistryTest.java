@@ -1,7 +1,7 @@
 package test.unit.birthdaygreetings;
 
+import com.danielwellman.birthdaygreetings.adapters.registry.filesystem.InMemoryPersonRegistry;
 import com.danielwellman.birthdaygreetings.adapters.registry.filesystem.PeopleSource;
-import com.danielwellman.birthdaygreetings.adapters.registry.filesystem.SourceFilteringPersonRegistry;
 import com.danielwellman.birthdaygreetings.domain.Date;
 import com.danielwellman.birthdaygreetings.domain.EmailAddress;
 import com.danielwellman.birthdaygreetings.domain.Person;
@@ -17,12 +17,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.emptyCollectionOf;
 
-public class SourceFilteringPersonRegistryTest {
+public class InMemoryPersonRegistryTest {
     @Rule
     public JUnitRuleMockery context = new JUnitRuleMockery();
 
     private PeopleSource peopleSource = context.mock(PeopleSource.class);
-    private SourceFilteringPersonRegistry registry = new SourceFilteringPersonRegistry(peopleSource);
+    private InMemoryPersonRegistry registry = new InMemoryPersonRegistry(peopleSource);
 
     @Test
     public void returnsEmptyCollectionIfNoBirthdaysToday() {

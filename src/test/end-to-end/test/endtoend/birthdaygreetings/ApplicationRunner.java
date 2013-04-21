@@ -1,7 +1,7 @@
 package test.endtoend.birthdaygreetings;
 
 import com.danielwellman.birthdaygreetings.adapters.registry.filesystem.FileSystemPeopleSource;
-import com.danielwellman.birthdaygreetings.adapters.registry.filesystem.SourceFilteringPersonRegistry;
+import com.danielwellman.birthdaygreetings.adapters.registry.filesystem.InMemoryPersonRegistry;
 import com.danielwellman.birthdaygreetings.domain.BirthdayService;
 import com.danielwellman.birthdaygreetings.domain.EmailNotifier;
 
@@ -16,7 +16,7 @@ public class ApplicationRunner {
     }
 
     public void runFor(FakeCalendar calendar) {
-        BirthdayService birthdayService = new BirthdayService(new EmailNotifier(fakePostOffice), new SourceFilteringPersonRegistry(new FileSystemPeopleSource(path)));
+        BirthdayService birthdayService = new BirthdayService(new EmailNotifier(fakePostOffice), new InMemoryPersonRegistry(new FileSystemPeopleSource(path)));
         birthdayService.sendGreetings(calendar.today());
     }
 

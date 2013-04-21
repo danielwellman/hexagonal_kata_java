@@ -7,11 +7,11 @@ import com.danielwellman.birthdaygreetings.domain.PersonRegistry;
 import java.util.Collection;
 import java.util.HashSet;
 
-public class SourceFilteringPersonRegistry implements PersonRegistry {
+public class InMemoryPersonRegistry implements PersonRegistry {
 
     private final PeopleSource peopleSource;
 
-    public SourceFilteringPersonRegistry(PeopleSource peopleSource) {
+    public InMemoryPersonRegistry(PeopleSource peopleSource) {
         this.peopleSource = peopleSource;
     }
 
