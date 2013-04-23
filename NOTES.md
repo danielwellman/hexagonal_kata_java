@@ -102,6 +102,9 @@
       appropriate adapter) what that might look like.
 * Birthday and Date domain notes -- For checking birthday, we only want to know if the given date's month and day
   are the same as the person's birthday.  There may be a case for a new type here - a MonthAndDay.
+* As I tried to implement this "leap birthday" story, I wondered: "Is it OK to implement this business logic in the
+  adapter layer?"  While it does seem like a domain concept, it does feel like it should be possible to prevent
+  most adapter implementations from botching this case by creating a contract test.
 
 ## Ideas
 
