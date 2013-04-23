@@ -24,6 +24,10 @@ public class Date {
         return sameMonthOfYear && sameDayOfMonth;
     }
 
+    public boolean isLeapYear() {
+        return this.date.year().isLeap();
+    }
+
     @SuppressWarnings("RedundantIfStatement")
     @Override
     public boolean equals(Object o) {
