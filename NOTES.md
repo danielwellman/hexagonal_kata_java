@@ -105,6 +105,10 @@
 * As I tried to implement this "leap birthday" story, I wondered: "Is it OK to implement this business logic in the
   adapter layer?"  While it does seem like a domain concept, it does feel like it should be possible to prevent
   most adapter implementations from botching this case by creating a contract test.
+* An insight this morning: I'd been thinking that there was some implicit concept in Dates about "observed on", or
+  some name that would map a day to one or two days for the current year.  But when I thought about this, I realized
+  that the logic to pick Feb 28th and 29th if the birthday was on the 29th *is application domain* specific -- for
+  example, why not pick the 29th and 30th instead?  This is implicit to the idea of birthdays in this app.
 
 ## Ideas
 
