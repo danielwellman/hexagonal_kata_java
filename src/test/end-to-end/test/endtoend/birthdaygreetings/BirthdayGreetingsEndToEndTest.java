@@ -45,4 +45,14 @@ public class BirthdayGreetingsEndToEndTest {
         application.hasNotDeliveredGreetingTo("sarah.vane@mail.com", "ckuro@email.com");
     }
 
+    @Test
+    public void sends_mail_to_leap_year_birthdays_on_non_leap_years() throws IOException {
+        birthdayList.createContaining(entryFor("Sam", "Smith", "feb28@mail.com", 2000, 2, 28),
+                                      entryFor("Lucille", "Ball", "feb29@mail.com", 2004, 2, 29));
+
+        application.runFor(new FakeCalendar(2005, 2, 28));
+
+        application.hasDeliveredGreetingTo("feb28@mail.com", "feb29@mail.com");
+    }
+
 }
