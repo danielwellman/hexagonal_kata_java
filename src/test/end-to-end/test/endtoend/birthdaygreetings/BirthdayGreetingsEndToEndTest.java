@@ -1,5 +1,6 @@
 package test.endtoend.birthdaygreetings;
 
+import com.danielwellman.birthdaygreetings.domain.TodaySource;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,7 +16,7 @@ public class BirthdayGreetingsEndToEndTest {
     private final FakeBirthdayList birthdayList = new FakeBirthdayList(sourceFile);
     private final ApplicationRunner application = new ApplicationRunner(sourceFile);
 
-    private final FakeCalendar irrelevantDay = new FakeCalendar(2012, 1, 15);
+    private final TodaySource irrelevantDay = new FakeCalendar(2012, 1, 15);
 
     @Before
     public void resetBirthdayList() throws IOException {

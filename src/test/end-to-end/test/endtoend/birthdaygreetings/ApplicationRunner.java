@@ -1,11 +1,8 @@
 package test.endtoend.birthdaygreetings;
 
+import com.danielwellman.birthdaygreetings.Main;
 import com.danielwellman.birthdaygreetings.adapters.notifiers.inmemory.InMemoryPostOffice;
-import com.danielwellman.birthdaygreetings.adapters.registry.filesystem.FileSystemPeopleSource;
-import com.danielwellman.birthdaygreetings.adapters.registry.filesystem.InMemoryPersonRegistry;
-import com.danielwellman.birthdaygreetings.domain.BirthdayService;
-import com.danielwellman.birthdaygreetings.domain.EmailNotifier;
-import com.danielwellman.birthdaygreetings.domain.ObserveLeapYearBirthdaysEarlyCalculator;
+import com.danielwellman.birthdaygreetings.domain.TodaySource;
 
 import java.nio.file.Path;
 
@@ -17,10 +14,8 @@ public class ApplicationRunner {
         this.path = path;
     }
 
-    public void runFor(FakeCalendar calendar) {
-        BirthdayService birthdayService = new BirthdayService(new EmailNotifier(inMemoryPostOffice), new InMemoryPersonRegistry(new FileSystemPeopleSource(path)),
-                new ObserveLeapYearBirthdaysEarlyCalculator());
-        birthdayService.sendGreetings(calendar.today());
+    public void runFor(TodaySource calendar) {
+        new Main(calendar, inMemoryPostOffice, path).run();
     }
 
     public void hasDeliveredGreetingTo(String... emails) {
