@@ -78,6 +78,9 @@
       datasource (SQL where clauses, etc.)
     - I can imagine implementing what J. B. Rainsberger calls "contract tests" for the PersonRegistry to make sure
       the contracts are obeyed by all implementations.
+
+### On the Leap Day Birthday Story
+
 * Thought: When considering how to build the "handle leap day birthdays" story, I at first thought I would put the
   comparison in the PersonRegistry implementation.  Then I realized that this was domain logic, and seemed like it
   could be implemented in the domain layer.  Said another way, if we added new adapter implementations, I would be
@@ -101,7 +104,11 @@
       I'm wondering if we created some form of Criteria object and passed that in (and it knew how to filter for each
       appropriate adapter) what that might look like.
 * Birthday and Date domain notes -- For checking birthday, we only want to know if the given date's month and day
-  are the same as the person's birthday.  There may be a case for a new type here - a MonthAndDay.
+  are the same as the person's birthday.  There may be a case for a new type here - a MonthAndDay.  When I later
+  implemented the test for calculating "effective" birthdays to check on non-leap years (Feb 28th & 29th), I
+  got an exception trying to create a new Date on 2/29/2003, because that is not a valid date!  I interpreted this as
+  a signal to create the MonthAndDate, since 2/29 and 2/28 are always valid month and dates -- but when you add in
+  a year, they may not be.
 * As I tried to implement this "leap birthday" story, I wondered: "Is it OK to implement this business logic in the
   adapter layer?"  While it does seem like a domain concept, it does feel like it should be possible to prevent
   most adapter implementations from botching this case by creating a contract test.
