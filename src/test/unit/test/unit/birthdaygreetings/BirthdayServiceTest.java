@@ -7,7 +7,6 @@ import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Rule;
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Set;
 
@@ -33,7 +32,7 @@ public class BirthdayServiceTest {
                 // want to check that all people returned from the registry are notified.
                 Set<MonthAndDay> effectiveDates = Sets.hashSet(new MonthAndDay(8, 22), new MonthAndDay(8, 23));
                 allowing(calculator).birthdaysEffectiveOn(anyDate); will(returnValue(effectiveDates));
-                allowing(registry).birthdaysOn(effectiveDates); will(returnValue(Arrays.asList(aPerson, anotherPerson)));
+                allowing(registry).birthdaysOn(effectiveDates); will(returnValue(Sets.hashSet(aPerson, anotherPerson)));
 
                 oneOf(notifier).notify(aPerson);
                 oneOf(notifier).notify(anotherPerson);
