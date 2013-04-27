@@ -6,6 +6,10 @@ public class Person {
     private final Date birthday;
 
     public Person(Name name, EmailAddress emailAddress, Date birthday) {
+        if (null == name) throw new IllegalArgumentException("Name cannot be null");
+        if (null == emailAddress) throw new IllegalArgumentException("Email cannot be null");
+        if (null == birthday) throw new IllegalArgumentException("Birthday cannot be null");
+
         this.name = name;
         this.emailAddress = emailAddress;
         this.birthday = birthday;
