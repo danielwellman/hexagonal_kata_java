@@ -1,7 +1,7 @@
 package com.danielwellman.birthdaygreetings.domain;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.Collection;
 
 public class ObserveLeapYearBirthdaysEarlyCalculator implements BirthdaysEffectiveCalculator {
 
@@ -9,7 +9,7 @@ public class ObserveLeapYearBirthdaysEarlyCalculator implements BirthdaysEffecti
     private static final MonthAndDay LEAP_DAY_IN_FEBRUARY = new MonthAndDay(2, 29);
 
     @Override
-    public List<MonthAndDay> birthdaysEffectiveOn(Date today) {
+    public Collection<MonthAndDay> birthdaysEffectiveOn(Date today) {
         if (today.isLeapYear() || !today.sameMonthAndDayAs(LAST_NON_LEAP_DAY_OF_FEBRUARY)) {
             return Arrays.asList(today.monthAndDate());
         } else if (today.sameMonthAndDayAs(LAST_NON_LEAP_DAY_OF_FEBRUARY)) {

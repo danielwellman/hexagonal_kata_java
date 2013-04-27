@@ -1,7 +1,6 @@
 package com.danielwellman.birthdaygreetings.domain;
 
 import java.util.Collection;
-import java.util.List;
 
 public class BirthdayService {
     private final Notifier notifier;
@@ -16,7 +15,7 @@ public class BirthdayService {
     }
 
     public void sendGreetings(Date today) {
-        List<MonthAndDay> effectiveDates = birthdaysEffectiveCalculator.birthdaysEffectiveOn(today);
+        Collection<MonthAndDay> effectiveDates = birthdaysEffectiveCalculator.birthdaysEffectiveOn(today);
         Collection<Person> people = personRegistry.birthdaysOn(effectiveDates);
         for (Person person : people) {
             notifier.notify(person);

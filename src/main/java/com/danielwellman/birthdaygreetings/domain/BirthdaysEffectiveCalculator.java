@@ -1,7 +1,7 @@
 package com.danielwellman.birthdaygreetings.domain;
 
-import java.util.List;
+import java.util.Collection;
 
 public interface BirthdaysEffectiveCalculator {
-    List<MonthAndDay> birthdaysEffectiveOn(Date today);
+    Collection<MonthAndDay> birthdaysEffectiveOn(Date today);
 }
