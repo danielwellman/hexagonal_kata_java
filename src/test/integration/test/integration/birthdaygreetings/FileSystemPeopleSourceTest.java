@@ -33,6 +33,10 @@ public class FileSystemPeopleSourceTest {
         birthdayList.clear();
     }
 
+    // FUTURE The production code uses a series of objects as internals for parsing.
+    //  To create smaller, more decoupled tests, we could split those tests up into little, small tests.
+    //  The test for this class then might only be about reading a file, skipping the header row, and delegating
+    //  parsing.
     @Test
     public void correctlyParsesAPerson() throws IOException {
         birthdayList.createContaining(entryFor("Jenny", "Saskatoon", "jenny@saskato.on", 2001, 1, 14));

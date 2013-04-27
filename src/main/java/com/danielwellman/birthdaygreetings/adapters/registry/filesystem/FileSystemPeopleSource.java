@@ -1,6 +1,7 @@
 package com.danielwellman.birthdaygreetings.adapters.registry.filesystem;
 
-import com.danielwellman.birthdaygreetings.domain.*;
+import com.danielwellman.birthdaygreetings.domain.BirthdayListUnavailableException;
+import com.danielwellman.birthdaygreetings.domain.Person;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -9,10 +10,11 @@ import java.nio.file.Path;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Scanner;
 
 public class FileSystemPeopleSource implements PeopleSource {
     private final Path path;
+    private final CsvParser<Person> personParser = new PersonCsvParser(
+            new StringCsvParser(), new StringCsvParser(), new EmailAddressCsvParser(), new DateCsvParser());
 
     public FileSystemPeopleSource(Path path) {
         this.path = path;
@@ -22,14 +24,14 @@ public class FileSystemPeopleSource implements PeopleSource {
     public Collection<Person> allPeople() {
         Collection<Person> people = new HashSet<>();
         for (String row : allEntriesInFile()) {
-            Person parsed = parse(row);
-            people.add(parsed);
+            people.add(personParser.parse(row));
         }
         return people;
     }
 
     private List<String> allEntriesInFile() {
         List<String> strings = allBirthdayEntries();
+        // FUTURE Remove this obtuse encoded knowledge that the header is the first line and can be ignored
         return strings.subList(1, strings.size());
     }
 
@@ -41,14 +43,5 @@ public class FileSystemPeopleSource implements PeopleSource {
         }
     }
 
-    private Person parse(String line) {
-        Scanner scanner = new Scanner(line);
-        scanner.useDelimiter(",\\s?");
-        String lastName = scanner.next();
-        String firstName = scanner.next();
-        String birthday = scanner.next();
-        String email = scanner.next();
 
-        return new Person(new Name(firstName, lastName), new EmailAddress(email), Date.fromCommonFormat(birthday));
-    }
 }
