@@ -1,9 +1,9 @@
 package test.endtoend.birthdaygreetings;
 
+import com.danielwellman.birthdaygreetings.domain.Calendar;
 import com.danielwellman.birthdaygreetings.domain.Date;
-import com.danielwellman.birthdaygreetings.domain.TodaySource;
 
-public class FakeCalendar implements TodaySource {
+public class FakeCalendar implements Calendar {
 
     private final Date today;
 

@@ -2,7 +2,7 @@ package test.endtoend.birthdaygreetings;
 
 import com.danielwellman.birthdaygreetings.Main;
 import com.danielwellman.birthdaygreetings.adapters.notifiers.inmemory.InMemoryPostOffice;
-import com.danielwellman.birthdaygreetings.domain.TodaySource;
+import com.danielwellman.birthdaygreetings.domain.Calendar;
 
 import java.nio.file.Path;
 
@@ -14,7 +14,7 @@ public class ApplicationRunner {
         this.path = path;
     }
 
-    public void runFor(TodaySource calendar) {
+    public void runFor(Calendar calendar) {
         new Main(calendar, inMemoryPostOffice, path).run();
     }
 

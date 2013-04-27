@@ -1,5 +1,5 @@
 package com.danielwellman.birthdaygreetings.domain;
 
-public interface TodaySource {
+public interface Calendar {
     Date today();
 }
