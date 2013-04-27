@@ -12,7 +12,7 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
 class FakePostOffice implements PostOffice {
-    private List<Email> sentMessages = new ArrayList<>();
+    private final List<Email> sentMessages = new ArrayList<>();
 
     @Override
     public void deliver(Email email) {

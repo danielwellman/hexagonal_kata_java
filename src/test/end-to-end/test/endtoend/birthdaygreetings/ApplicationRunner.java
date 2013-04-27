@@ -10,7 +10,7 @@ import java.nio.file.Path;
 
 public class ApplicationRunner {
     private final Path path;
-    private FakePostOffice fakePostOffice = new FakePostOffice();
+    private final FakePostOffice fakePostOffice = new FakePostOffice();
 
     public ApplicationRunner(Path path) {
         this.path = path;

@@ -13,7 +13,7 @@ public class BirthdayGreetingsEndToEndTest {
 
     private final Path sourceFile = Paths.get("birthdays.txt");
     private final FakeBirthdayList birthdayList = new FakeBirthdayList(sourceFile);
-    private ApplicationRunner application = new ApplicationRunner(sourceFile);
+    private final ApplicationRunner application = new ApplicationRunner(sourceFile);
 
     private final FakeCalendar irrelevantDay = new FakeCalendar(2012, 1, 15);
 

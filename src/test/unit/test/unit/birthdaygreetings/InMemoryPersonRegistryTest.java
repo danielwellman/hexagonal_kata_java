@@ -18,8 +18,8 @@ public class InMemoryPersonRegistryTest {
     @Rule
     public JUnitRuleMockery context = new JUnitRuleMockery();
 
-    private PeopleSource peopleSource = context.mock(PeopleSource.class);
-    private InMemoryPersonRegistry registry = new InMemoryPersonRegistry(peopleSource);
+    private final PeopleSource peopleSource = context.mock(PeopleSource.class);
+    private final InMemoryPersonRegistry registry = new InMemoryPersonRegistry(peopleSource);
 
     @Test
     public void returnsEmptyCollectionIfNoBirthdaysMatchMonthAndDate() {

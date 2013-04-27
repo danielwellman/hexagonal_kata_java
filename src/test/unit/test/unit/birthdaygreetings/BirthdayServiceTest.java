@@ -14,9 +14,9 @@ public class BirthdayServiceTest {
     @Rule
     public JUnitRuleMockery context = new JUnitRuleMockery();
 
-    private PersonRegistry registry = context.mock(PersonRegistry.class);
-    private Notifier notifier = context.mock(Notifier.class);
-    private BirthdaysEffectiveCalculator calculator = context.mock(BirthdaysEffectiveCalculator.class);
+    private final PersonRegistry registry = context.mock(PersonRegistry.class);
+    private final Notifier notifier = context.mock(Notifier.class);
+    private final BirthdaysEffectiveCalculator calculator = context.mock(BirthdaysEffectiveCalculator.class);
 
     @Test
     public void notifiesAllPeopleCalculatedForToday() {
