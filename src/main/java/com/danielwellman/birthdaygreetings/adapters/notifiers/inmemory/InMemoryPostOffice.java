@@ -1,4 +1,4 @@
-package test.endtoend.birthdaygreetings;
+package com.danielwellman.birthdaygreetings.adapters.notifiers.inmemory;
 
 import com.danielwellman.birthdaygreetings.domain.Email;
 import com.danielwellman.birthdaygreetings.domain.PostOffice;
@@ -8,10 +8,16 @@ import org.hamcrest.Matcher;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
 
-class FakePostOffice implements PostOffice {
+/**
+ * An in-memory implementation of a PostOffice.
+ *
+ * Note that this class uses the Hamcrest matchers and asserts - this is because this class was extracted from
+ * the tests and moved into the production implementation.
+ */
+public class InMemoryPostOffice implements PostOffice {
     private final List<Email> sentMessages = new ArrayList<>();
 
     @Override
