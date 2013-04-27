@@ -16,7 +16,7 @@ public class EmailNotifierTest {
     @Rule
     public JUnitRuleMockery context = new JUnitRuleMockery();
 
-    final PostOffice postOffice = context.mock(PostOffice.class);
+    private final PostOffice postOffice = context.mock(PostOffice.class);
 
     @Test
     public void sendsAnEmailGreetingToPerson() {

@@ -5,8 +5,8 @@ import java.util.List;
 
 public class ObserveLeapYearBirthdaysEarlyCalculator implements BirthdaysEffectiveCalculator {
 
-    public static final MonthAndDay LAST_NON_LEAP_DAY_OF_FEBRUARY = new MonthAndDay(2, 28);
-    public static final MonthAndDay LEAP_DAY_IN_FEBRUARY = new MonthAndDay(2, 29);
+    private static final MonthAndDay LAST_NON_LEAP_DAY_OF_FEBRUARY = new MonthAndDay(2, 28);
+    private  static final MonthAndDay LEAP_DAY_IN_FEBRUARY = new MonthAndDay(2, 29);
 
     @Override
     public List<MonthAndDay> birthdaysEffectiveOn(Date today) {
