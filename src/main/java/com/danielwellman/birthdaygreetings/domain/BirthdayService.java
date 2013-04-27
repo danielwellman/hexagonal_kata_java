@@ -6,6 +6,7 @@ import java.util.List;
 public class BirthdayService {
     private final Notifier notifier;
     private final PersonRegistry personRegistry;
+    // FUTURE I'm not certain whether this strategy belongs as an internal or injected collaborator.
     private final BirthdaysEffectiveCalculator birthdaysEffectiveCalculator;
 
     public BirthdayService(Notifier notifier, PersonRegistry personRegistry, BirthdaysEffectiveCalculator calculator) {
