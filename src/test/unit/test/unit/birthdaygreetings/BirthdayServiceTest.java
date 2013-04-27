@@ -1,5 +1,6 @@
 package test.unit.birthdaygreetings;
 
+import com.danielwellman.birthdaygreetings.conveniences.Sets;
 import com.danielwellman.birthdaygreetings.domain.*;
 import org.jmock.Expectations;
 import org.jmock.integration.junit4.JUnitRuleMockery;
@@ -7,8 +8,8 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 public class BirthdayServiceTest {
     @Rule
@@ -30,7 +31,7 @@ public class BirthdayServiceTest {
                 // for an allowing on the registry call to birthdaysOn.  Something feels funny here... It's like
                 // I'm describing an algorithm *in the test*, but that's not really the point of this test -- I
                 // want to check that all people returned from the registry are notified.
-                List<MonthAndDay> effectiveDates = Arrays.asList(new MonthAndDay(8, 22), new MonthAndDay(8, 23));
+                Set<MonthAndDay> effectiveDates = Sets.hashSet(new MonthAndDay(8, 22), new MonthAndDay(8, 23));
                 allowing(calculator).birthdaysEffectiveOn(anyDate); will(returnValue(effectiveDates));
                 allowing(registry).birthdaysOn(effectiveDates); will(returnValue(Arrays.asList(aPerson, anotherPerson)));
 
