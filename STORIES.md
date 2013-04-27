@@ -13,5 +13,6 @@
 ## Backlog
 
 * Recover from invalid data in CSV file (date format wrong, null values, etc.)
+  * Make value objects (Date, EmailAddress, etc.) prevent creation with invalid values
 * First CSV descriptor line can be optional
 * Send via a real SMTP server
