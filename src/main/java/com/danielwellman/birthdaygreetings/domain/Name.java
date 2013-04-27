@@ -9,7 +9,8 @@ public class Name {
         this.lastName = lastName;
     }
 
-    // FUTURE Replace need for getter and instead use some other way to greet this person
+    // FUTURE Replace need for getter and instead use some other way to greet this person,
+    //        such as Smalltalk's style of printOn: aStream
     public String getFirstName() {
         return firstName;
     }
