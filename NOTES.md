@@ -109,6 +109,11 @@
   some name that would map a day to one or two days for the current year.  But when I thought about this, I realized
   that the logic to pick Feb 28th and 29th if the birthday was on the 29th *is application domain* specific -- for
   example, why not pick the 29th and 30th instead?  This is implicit to the idea of birthdays in this app.
+* The ObserveLeapYearBirthdaysEarlyCalculator almost feels like it could be an internal in GOOS parlance; that is,
+  it may not need to be passed in as a required collaborator.  I don't see it being used in other circumstances,
+  unless perhaps we passed it to implementations of PersonRegistry (and that isn't exactly clear to me).
+  It would mean moving the tests for this strategy into the BirthdayService test.  It feels like that would make
+  the BirthdayService have more responsibilities, but I'm not sure here. (!)
 
 ## Ideas
 
