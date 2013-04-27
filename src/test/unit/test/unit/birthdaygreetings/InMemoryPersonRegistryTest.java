@@ -2,10 +2,7 @@ package test.unit.birthdaygreetings;
 
 import com.danielwellman.birthdaygreetings.adapters.registry.filesystem.InMemoryPersonRegistry;
 import com.danielwellman.birthdaygreetings.adapters.registry.filesystem.PeopleSource;
-import com.danielwellman.birthdaygreetings.domain.Date;
-import com.danielwellman.birthdaygreetings.domain.EmailAddress;
-import com.danielwellman.birthdaygreetings.domain.Name;
-import com.danielwellman.birthdaygreetings.domain.Person;
+import com.danielwellman.birthdaygreetings.domain.*;
 import org.jmock.Expectations;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Rule;
@@ -31,7 +28,7 @@ public class InMemoryPersonRegistryTest {
             allowing(peopleSource).allPeople();
             will(returnValue(Arrays.asList(createPersonWithBirthdayOn(new Date(2011, 1, 1)))));
         }});
-        assertThat(registry.birthdaysOn(new Date(2030, 12, 31)), emptyCollectionOf(Person.class));
+        assertThat(registry.birthdaysOn(new MonthAndDay(12, 31)), emptyCollectionOf(Person.class));
     }
 
 
@@ -47,7 +44,7 @@ public class InMemoryPersonRegistryTest {
         }});
 
         //noinspection unchecked
-        assertThat(registry.birthdaysOn(new Date(2013, 12, 25)), allOf(
+        assertThat(registry.birthdaysOn(new MonthAndDay(12, 25)), allOf(
                 containsInAnyOrder(christmasBirthday2009, christmasBirthday2011)
         ));
     }

@@ -16,16 +16,16 @@ public class Date {
         this.date = date;
     }
 
-    public boolean sameMonthAndDayAs(Date other) {
-        // FUTURE Consider an implementation that does not rely on peeking into private fields
-        boolean sameMonthOfYear = this.date.getMonthOfYear() == other.date.getMonthOfYear();
-        boolean sameDayOfMonth = this.date.getDayOfMonth() == other.date.getDayOfMonth();
-
-        return sameMonthOfYear && sameDayOfMonth;
+    public boolean sameMonthAndDayAs(MonthAndDay other) {
+        return monthAndDate().equals(other);
     }
 
     public boolean isLeapYear() {
         return this.date.year().isLeap();
+    }
+
+    public MonthAndDay monthAndDate() {
+        return new MonthAndDay(this.date.getMonthOfYear(), this.date.getDayOfMonth());
     }
 
     @SuppressWarnings("RedundantIfStatement")
@@ -55,5 +55,4 @@ public class Date {
         LocalDate jodaDate = LocalDate.parse(commonDateFormatString, DateTimeFormat.forPattern(COMMON_DATE_FORMAT));
         return new Date(jodaDate);
     }
-
 }

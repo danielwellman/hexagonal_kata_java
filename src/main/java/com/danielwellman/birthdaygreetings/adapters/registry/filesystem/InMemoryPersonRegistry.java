@@ -1,6 +1,6 @@
 package com.danielwellman.birthdaygreetings.adapters.registry.filesystem;
 
-import com.danielwellman.birthdaygreetings.domain.Date;
+import com.danielwellman.birthdaygreetings.domain.MonthAndDay;
 import com.danielwellman.birthdaygreetings.domain.Person;
 import com.danielwellman.birthdaygreetings.domain.PersonRegistry;
 
@@ -16,12 +16,12 @@ public class InMemoryPersonRegistry implements PersonRegistry {
     }
 
     @Override
-    public Collection<Person> birthdaysOn(Date targetDate) {
+    public Collection<Person> birthdaysOn(MonthAndDay monthAndDay) {
         Collection<Person> filtered = new HashSet<>();
 
         Collection<Person> all = peopleSource.allPeople();
         for (Person person : all) {
-            if (person.sameBirthday(targetDate)) {
+            if (person.isBirthday(monthAndDay)) {
                 filtered.add(person);
             }
         }

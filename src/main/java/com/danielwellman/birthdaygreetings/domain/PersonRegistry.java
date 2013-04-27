@@ -3,5 +3,6 @@ package com.danielwellman.birthdaygreetings.domain;
 import java.util.Collection;
 
 public interface PersonRegistry {
-    Collection<Person> birthdaysOn(Date date);
+
+    Collection<Person> birthdaysOn(MonthAndDay monthAndDay);
 }

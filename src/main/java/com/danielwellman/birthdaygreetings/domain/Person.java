@@ -19,10 +19,9 @@ public class Person {
         return emailAddress;
     }
 
-    public boolean sameBirthday(Date targetDate) {
-        return birthday.sameMonthAndDayAs(targetDate);
+    public boolean isBirthday(MonthAndDay monthAndDay) {
+        return birthday.sameMonthAndDayAs(monthAndDay);
     }
-
 
     // These equals and hash code implementations compare all values; I'm thinking in this case that
     // a Person isn't really an entity (if so, what would uniquely identify them, given this data?)

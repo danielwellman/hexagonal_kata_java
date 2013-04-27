@@ -12,7 +12,7 @@ public class BirthdayService {
     }
 
     public void sendGreetings(Date today) {
-        Collection<Person> people = personRegistry.birthdaysOn(today);
+        Collection<Person> people = personRegistry.birthdaysOn(today.monthAndDate());
         for (Person person : people) {
             notifier.notify(person);
         }

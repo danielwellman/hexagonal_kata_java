@@ -24,7 +24,7 @@ public class BirthdayServiceTest {
 
         context.checking(new Expectations() {
             {
-                allowing(registry).birthdaysOn(anyDate); will(returnValue(Arrays.asList(aPerson, anotherPerson)));
+                allowing(registry).birthdaysOn(anyDate.monthAndDate()); will(returnValue(Arrays.asList(aPerson, anotherPerson)));
                 oneOf(notifier).notify(aPerson);
                 oneOf(notifier).notify(anotherPerson);
             }
