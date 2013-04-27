@@ -4,6 +4,7 @@ import com.danielwellman.birthdaygreetings.adapters.registry.filesystem.FileSyst
 import com.danielwellman.birthdaygreetings.adapters.registry.filesystem.InMemoryPersonRegistry;
 import com.danielwellman.birthdaygreetings.domain.BirthdayService;
 import com.danielwellman.birthdaygreetings.domain.EmailNotifier;
+import com.danielwellman.birthdaygreetings.domain.ObserveLeapYearBirthdaysEarlyCalculator;
 
 import java.nio.file.Path;
 
@@ -16,7 +17,8 @@ public class ApplicationRunner {
     }
 
     public void runFor(FakeCalendar calendar) {
-        BirthdayService birthdayService = new BirthdayService(new EmailNotifier(fakePostOffice), new InMemoryPersonRegistry(new FileSystemPeopleSource(path)));
+        BirthdayService birthdayService = new BirthdayService(new EmailNotifier(fakePostOffice), new InMemoryPersonRegistry(new FileSystemPeopleSource(path)),
+                new ObserveLeapYearBirthdaysEarlyCalculator());
         birthdayService.sendGreetings(calendar.today());
     }
 

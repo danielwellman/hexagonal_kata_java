@@ -6,6 +6,7 @@ import com.danielwellman.birthdaygreetings.domain.PersonRegistry;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 
 public class InMemoryPersonRegistry implements PersonRegistry {
 
@@ -16,13 +17,15 @@ public class InMemoryPersonRegistry implements PersonRegistry {
     }
 
     @Override
-    public Collection<Person> birthdaysOn(MonthAndDay monthAndDay) {
+    public Collection<Person> birthdaysOn(List<MonthAndDay> monthAndDays) {
         Collection<Person> filtered = new HashSet<>();
 
         Collection<Person> all = peopleSource.allPeople();
         for (Person person : all) {
-            if (person.isBirthday(monthAndDay)) {
-                filtered.add(person);
+            for (MonthAndDay monthAndDay : monthAndDays) {
+                if (person.isBirthday(monthAndDay)) {
+                    filtered.add(person);
+                }
             }
         }
         return filtered;
