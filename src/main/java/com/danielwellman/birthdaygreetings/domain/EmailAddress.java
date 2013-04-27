@@ -1,9 +1,12 @@
 package com.danielwellman.birthdaygreetings.domain;
 
+import com.danielwellman.birthdaygreetings.conveniences.StringUtils;
+
 public class EmailAddress {
     private final String email;
 
     public EmailAddress(String email) {
+        if (null == email || StringUtils.isBlank(email)) throw new IllegalArgumentException("Email cannot be null");
         this.email = email;
     }
 
