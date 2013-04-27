@@ -1,10 +1,12 @@
 package com.danielwellman.birthdaygreetings;
 
+import com.danielwellman.birthdaygreetings.adapters.notifiers.inmemory.InMemoryPostOffice;
 import com.danielwellman.birthdaygreetings.adapters.registry.filesystem.FileSystemPeopleSource;
 import com.danielwellman.birthdaygreetings.adapters.registry.filesystem.InMemoryPersonRegistry;
 import com.danielwellman.birthdaygreetings.domain.*;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Main {
     private final TodaySource calendar;
@@ -23,4 +25,10 @@ public class Main {
                 new ObserveLeapYearBirthdaysEarlyCalculator());
         birthdayService.sendGreetings(this.calendar.today());
     }
+
+    public static void main(String[] args) {
+        // FUTURE This could accept an argument for the filename to use
+        new Main(new SystemTimeTodaySource(), new InMemoryPostOffice(), Paths.get("birthdays.txt")).run();
+    }
+
 }
