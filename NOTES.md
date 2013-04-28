@@ -1,5 +1,6 @@
 # Implementation Notes, Thoughts, and Questions
 
+_These are my notes I took while implementing the kata.  They are in a stream of conscious style and may not make sense to, well, anyone._
 
 ## Thoughts
 
