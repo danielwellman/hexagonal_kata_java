@@ -5,6 +5,10 @@ public class MonthAndDay {
     private final int dayOfMonth;
 
     public MonthAndDay(int monthOfYear, int dayOfMonth) {
+        if (monthOfYear <= 0) throw new IllegalArgumentException("month must be greater than zero");
+        if (dayOfMonth <= 0) throw new IllegalArgumentException("day must be greater than zero");
+        // FUTURE Validate that month <= 12, and day <= 29, but I've reached the point of boredom now...
+
         this.monthOfYear = monthOfYear;
         this.dayOfMonth = dayOfMonth;
     }
