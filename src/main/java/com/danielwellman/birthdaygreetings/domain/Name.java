@@ -1,10 +1,17 @@
 package com.danielwellman.birthdaygreetings.domain;
 
+import com.danielwellman.birthdaygreetings.conveniences.StringUtils;
+
 public class Name {
     private final String firstName;
     private final String lastName;
 
     public Name(String firstName, String lastName) {
+        if (null == firstName && null == lastName)
+            throw new IllegalArgumentException("First and last names cannot both be null");
+        if (null != firstName && null != lastName && StringUtils.isBlank(firstName) && StringUtils.isBlank(lastName)) {
+            throw new IllegalArgumentException("First and last names cannot both be blank");
+        }
         this.firstName = firstName;
         this.lastName = lastName;
     }
