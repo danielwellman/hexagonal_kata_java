@@ -40,19 +40,18 @@ public class Person {
 
         Person person = (Person) o;
 
-        if (birthday != null ? !birthday.equals(person.birthday) : person.birthday != null) return false;
-        if (emailAddress != null ? !emailAddress.equals(person.emailAddress) : person.emailAddress != null)
-            return false;
-        if (name != null ? !name.equals(person.name) : person.name != null) return false;
+        if (!birthday.equals(person.birthday)) return false;
+        if (!emailAddress.equals(person.emailAddress)) return false;
+        if (!name.equals(person.name)) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = emailAddress != null ? emailAddress.hashCode() : 0;
-        result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
+        int result = name.hashCode();
+        result = 31 * result + emailAddress.hashCode();
+        result = 31 * result + birthday.hashCode();
         return result;
     }
 
