@@ -8,11 +8,11 @@
 * Process many people in the list
 * Send notification only if today is their birthday
 * Send leap-day birthdays a day earlier on non-leap years (Feb 29 -> Feb 28)
+  * Make value objects (Date, EmailAddress, etc.) prevent creation with invalid values
 
 
 ## Backlog
 
 * Recover from invalid data in CSV file (date format wrong, null values, etc.)
-  * Make value objects (Date, EmailAddress, etc.) prevent creation with invalid values
 * First CSV descriptor line can be optional
 * Send via a real SMTP server
