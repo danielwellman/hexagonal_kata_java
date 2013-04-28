@@ -29,4 +29,9 @@ public class DateTest {
     private Date year(int year) {
         return new Date(year, 1, 1);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void forbidsConstructionWithNullJodaDae() {
+        new Date(null);
+    }
 }

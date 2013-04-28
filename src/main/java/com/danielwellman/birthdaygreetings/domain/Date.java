@@ -6,6 +6,7 @@ import org.joda.time.format.DateTimeFormat;
 public class Date {
 
     private static final String COMMON_DATE_FORMAT = "yyyy/MM/dd";
+
     private final LocalDate date;
 
     public Date(int year, int month, int day) {
@@ -13,6 +14,7 @@ public class Date {
     }
 
     public Date(LocalDate date) {
+        if (null == date) throw new IllegalArgumentException("date cannot be null");
         this.date = date;
     }
 
