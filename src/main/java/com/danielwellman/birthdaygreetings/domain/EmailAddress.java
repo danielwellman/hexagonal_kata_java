@@ -15,6 +15,7 @@ public class EmailAddress {
         return email;
     }
 
+    @SuppressWarnings("RedundantIfStatement")
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -22,14 +23,13 @@ public class EmailAddress {
 
         EmailAddress that = (EmailAddress) o;
 
-        //noinspection RedundantIfStatement
-        if (email != null ? !email.equals(that.email) : that.email != null) return false;
+        if (!email.equals(that.email)) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return email != null ? email.hashCode() : 0;
+        return email.hashCode();
     }
 }
