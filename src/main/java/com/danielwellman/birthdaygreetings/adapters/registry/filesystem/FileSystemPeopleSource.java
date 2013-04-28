@@ -24,6 +24,9 @@ public class FileSystemPeopleSource implements PeopleSource {
     public Collection<Person> allPeople() {
         Collection<Person> people = new HashSet<>();
         for (String row : allEntriesInFile()) {
+            // FUTURE To handle invalid rows, we might choose to ignore them and notify some sort of listener that
+            // the row was skipped.  We might do this either by catching exceptions like IllegalArgumentException,
+            // or perhaps change this PersonCsvParser to return a Maybe<Person>.
             people.add(personParser.parse(row));
         }
         return people;
