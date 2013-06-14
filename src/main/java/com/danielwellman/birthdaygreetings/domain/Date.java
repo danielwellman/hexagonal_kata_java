@@ -30,6 +30,10 @@ public class Date {
         return new MonthAndDay(this.date.getMonthOfYear(), this.date.getDayOfMonth());
     }
 
+    public boolean wouldMissLeapYear() {
+        return !isInLeapYear() && sameMonthAndDayAs(MonthAndDay.FEB_28);
+    }
+
     @SuppressWarnings("RedundantIfStatement")
     @Override
     public boolean equals(Object o) {

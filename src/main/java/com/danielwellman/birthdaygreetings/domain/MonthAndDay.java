@@ -1,6 +1,9 @@
 package com.danielwellman.birthdaygreetings.domain;
 
 public class MonthAndDay {
+    public static final MonthAndDay FEB_28 = new MonthAndDay(2, 28);
+    public static final MonthAndDay FEB_29 = new MonthAndDay(2, 29);
+
     private final int monthOfYear;
     private final int dayOfMonth;
 
