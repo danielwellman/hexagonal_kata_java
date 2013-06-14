@@ -22,7 +22,7 @@ public class Date {
         return monthAndDate().equals(other);
     }
 
-    public boolean isLeapYear() {
+    public boolean isInLeapYear() {
         return this.date.year().isLeap();
     }
 

@@ -19,11 +19,11 @@ public class DateTest {
 
     @Test
     public void reportsLeapYears() {
-        assertThat(year(2000).isLeapYear(), is(true));
-        assertThat(year(2001).isLeapYear(), is(false));
-        assertThat(year(2002).isLeapYear(), is(false));
-        assertThat(year(2003).isLeapYear(), is(false));
-        assertThat(year(2004).isLeapYear(), is(true));
+        assertThat(year(2000).isInLeapYear(), is(true));
+        assertThat(year(2001).isInLeapYear(), is(false));
+        assertThat(year(2002).isInLeapYear(), is(false));
+        assertThat(year(2003).isInLeapYear(), is(false));
+        assertThat(year(2004).isInLeapYear(), is(true));
     }
 
     private Date year(int year) {
