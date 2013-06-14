@@ -16,7 +16,7 @@ public class BirthdayService {
 
     public void sendGreetings(Date today) {
         Set<MonthAndDay> effectiveDates = birthdaysEffectiveCalculator.birthdaysEffectiveOn(today);
-        Set<Person> people = this.people.birthdaysOn(effectiveDates);
+        Set<Person> people = this.people.withBirthdaysOn(effectiveDates);
         for (Person person : people) {
             notifier.notify(person);
         }

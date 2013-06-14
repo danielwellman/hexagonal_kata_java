@@ -32,7 +32,7 @@ public class BirthdayServiceTest {
                 // want to check that all people returned from the registry are notified.
                 Set<MonthAndDay> effectiveDates = Sets.hashSet(new MonthAndDay(8, 22), new MonthAndDay(8, 23));
                 allowing(calculator).birthdaysEffectiveOn(anyDate); will(returnValue(effectiveDates));
-                allowing(people).birthdaysOn(effectiveDates); will(returnValue(Sets.hashSet(aPerson, anotherPerson)));
+                allowing(people).withBirthdaysOn(effectiveDates); will(returnValue(Sets.hashSet(aPerson, anotherPerson)));
 
                 oneOf(notifier).notify(aPerson);
                 oneOf(notifier).notify(anotherPerson);

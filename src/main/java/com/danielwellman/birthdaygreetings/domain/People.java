@@ -4,5 +4,5 @@ import java.util.Collection;
 import java.util.Set;
 
 public interface People {
-    Set<Person> birthdaysOn(Collection<MonthAndDay> monthAndDay);
+    Set<Person> withBirthdaysOn(Collection<MonthAndDay> monthAndDay);
 }

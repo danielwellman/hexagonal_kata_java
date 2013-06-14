@@ -27,7 +27,7 @@ public class InMemoryPeopleTest {
             allowing(peopleSource).allPeople();
             will(returnValue(Arrays.asList(createPersonWithBirthdayOn(new Date(2011, 1, 1)))));
         }});
-        assertThat(people.birthdaysOn(Arrays.asList(new MonthAndDay(12, 31))), emptyCollectionOf(Person.class));
+        assertThat(people.withBirthdaysOn(Arrays.asList(new MonthAndDay(12, 31))), emptyCollectionOf(Person.class));
     }
 
 
@@ -44,7 +44,7 @@ public class InMemoryPeopleTest {
         }});
 
         //noinspection unchecked
-        assertThat(people.birthdaysOn(Arrays.asList(new MonthAndDay(12, 25), new MonthAndDay(10, 31))),
+        assertThat(people.withBirthdaysOn(Arrays.asList(new MonthAndDay(12, 25), new MonthAndDay(10, 31))),
                 containsInAnyOrder(christmasBirthday2009, christmasBirthday2011, halloween2008));
     }
 

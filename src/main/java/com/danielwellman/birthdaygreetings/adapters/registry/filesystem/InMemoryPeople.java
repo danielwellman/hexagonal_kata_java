@@ -17,7 +17,7 @@ public class InMemoryPeople implements People {
     }
 
     @Override
-    public Set<Person> birthdaysOn(Collection<MonthAndDay> monthAndDays) {
+    public Set<Person> withBirthdaysOn(Collection<MonthAndDay> monthAndDays) {
         Set<Person> filtered = new HashSet<>();
 
         Collection<Person> all = peopleSource.allPeople();
