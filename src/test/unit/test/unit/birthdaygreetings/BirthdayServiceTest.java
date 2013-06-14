@@ -14,7 +14,7 @@ public class BirthdayServiceTest {
     @Rule
     public JUnitRuleMockery context = new JUnitRuleMockery();
 
-    private final PersonRegistry registry = context.mock(PersonRegistry.class);
+    private final People people = context.mock(People.class);
     private final Notifier notifier = context.mock(Notifier.class);
     private final BirthdaysEffectiveCalculator calculator = context.mock(BirthdaysEffectiveCalculator.class);
 
@@ -32,13 +32,13 @@ public class BirthdayServiceTest {
                 // want to check that all people returned from the registry are notified.
                 Set<MonthAndDay> effectiveDates = Sets.hashSet(new MonthAndDay(8, 22), new MonthAndDay(8, 23));
                 allowing(calculator).birthdaysEffectiveOn(anyDate); will(returnValue(effectiveDates));
-                allowing(registry).birthdaysOn(effectiveDates); will(returnValue(Sets.hashSet(aPerson, anotherPerson)));
+                allowing(people).birthdaysOn(effectiveDates); will(returnValue(Sets.hashSet(aPerson, anotherPerson)));
 
                 oneOf(notifier).notify(aPerson);
                 oneOf(notifier).notify(anotherPerson);
             }
         });
-        BirthdayService birthdayService = new BirthdayService(notifier, registry, calculator);
+        BirthdayService birthdayService = new BirthdayService(notifier, people, calculator);
         birthdayService.sendGreetings(anyDate);
     }
 

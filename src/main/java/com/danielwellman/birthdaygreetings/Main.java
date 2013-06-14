@@ -2,7 +2,7 @@ package com.danielwellman.birthdaygreetings;
 
 import com.danielwellman.birthdaygreetings.adapters.notifiers.inmemory.InMemoryPostOffice;
 import com.danielwellman.birthdaygreetings.adapters.registry.filesystem.FileSystemPeopleSource;
-import com.danielwellman.birthdaygreetings.adapters.registry.filesystem.InMemoryPersonRegistry;
+import com.danielwellman.birthdaygreetings.adapters.registry.filesystem.InMemoryPeople;
 import com.danielwellman.birthdaygreetings.domain.*;
 
 import java.nio.file.Path;
@@ -21,7 +21,7 @@ public class Main {
 
     public void run() {
         BirthdayService birthdayService = new BirthdayService(new EmailNotifier(this.postOffice),
-                new InMemoryPersonRegistry(new FileSystemPeopleSource(this.path)),
+                new InMemoryPeople(new FileSystemPeopleSource(this.path)),
                 new ObserveLeapYearBirthdaysEarlyCalculator());
         birthdayService.sendGreetings(this.calendar.today());
     }

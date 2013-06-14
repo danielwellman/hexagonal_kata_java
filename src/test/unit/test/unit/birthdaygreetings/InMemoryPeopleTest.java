@@ -1,6 +1,6 @@
 package test.unit.birthdaygreetings;
 
-import com.danielwellman.birthdaygreetings.adapters.registry.filesystem.InMemoryPersonRegistry;
+import com.danielwellman.birthdaygreetings.adapters.registry.filesystem.InMemoryPeople;
 import com.danielwellman.birthdaygreetings.adapters.registry.filesystem.PeopleSource;
 import com.danielwellman.birthdaygreetings.domain.*;
 import org.jmock.Expectations;
@@ -14,12 +14,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.emptyCollectionOf;
 
-public class InMemoryPersonRegistryTest {
+public class InMemoryPeopleTest {
     @Rule
     public JUnitRuleMockery context = new JUnitRuleMockery();
 
     private final PeopleSource peopleSource = context.mock(PeopleSource.class);
-    private final InMemoryPersonRegistry registry = new InMemoryPersonRegistry(peopleSource);
+    private final InMemoryPeople people = new InMemoryPeople(peopleSource);
 
     @Test
     public void returnsEmptyCollectionIfNoBirthdaysMatchMonthAndDate() {
@@ -27,7 +27,7 @@ public class InMemoryPersonRegistryTest {
             allowing(peopleSource).allPeople();
             will(returnValue(Arrays.asList(createPersonWithBirthdayOn(new Date(2011, 1, 1)))));
         }});
-        assertThat(registry.birthdaysOn(Arrays.asList(new MonthAndDay(12, 31))), emptyCollectionOf(Person.class));
+        assertThat(people.birthdaysOn(Arrays.asList(new MonthAndDay(12, 31))), emptyCollectionOf(Person.class));
     }
 
 
@@ -44,7 +44,7 @@ public class InMemoryPersonRegistryTest {
         }});
 
         //noinspection unchecked
-        assertThat(registry.birthdaysOn(Arrays.asList(new MonthAndDay(12, 25), new MonthAndDay(10, 31))),
+        assertThat(people.birthdaysOn(Arrays.asList(new MonthAndDay(12, 25), new MonthAndDay(10, 31))),
                 containsInAnyOrder(christmasBirthday2009, christmasBirthday2011, halloween2008));
     }
 

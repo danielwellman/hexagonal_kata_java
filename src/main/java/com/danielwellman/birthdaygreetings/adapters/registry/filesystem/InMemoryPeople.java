@@ -1,18 +1,18 @@
 package com.danielwellman.birthdaygreetings.adapters.registry.filesystem;
 
 import com.danielwellman.birthdaygreetings.domain.MonthAndDay;
+import com.danielwellman.birthdaygreetings.domain.People;
 import com.danielwellman.birthdaygreetings.domain.Person;
-import com.danielwellman.birthdaygreetings.domain.PersonRegistry;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-public class InMemoryPersonRegistry implements PersonRegistry {
+public class InMemoryPeople implements People {
 
     private final PeopleSource peopleSource;
 
-    public InMemoryPersonRegistry(PeopleSource peopleSource) {
+    public InMemoryPeople(PeopleSource peopleSource) {
         this.peopleSource = peopleSource;
     }
 
