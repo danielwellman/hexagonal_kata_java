@@ -21,7 +21,7 @@ public class BirthdayService {
         }
     }
 
-    public Set<MonthAndDay> birthdaysEffectiveOn(Date date) {
+    private Set<MonthAndDay> birthdaysEffectiveOn(Date date) {
         return date.wouldMissLeapYear() ? FEB_28_AND_29 : Sets.hashSet(date.monthAndDate());
     }
 
