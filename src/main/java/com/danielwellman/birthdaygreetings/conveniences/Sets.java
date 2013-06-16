@@ -7,7 +7,7 @@ import java.util.Set;
 public class Sets {
     @SafeVarargs
     public static <T> Set<T> hashSet(T... items) {
-        HashSet<T> set = new HashSet<>();
+        Set<T> set = new HashSet<>();
         Collections.addAll(set, items);
         return set;
     }
