@@ -3,16 +3,16 @@ package com.danielwellman.birthdaygreetings.domain;
 public class Person {
     private final Name name;
     private final EmailAddress emailAddress;
-    private final Date birthday;
+    private final Date birthDate;
 
-    public Person(Name name, EmailAddress emailAddress, Date birthday) {
+    public Person(Name name, EmailAddress emailAddress, Date birthDate) {
         if (null == name) throw new IllegalArgumentException("Name cannot be null");
         if (null == emailAddress) throw new IllegalArgumentException("Email cannot be null");
-        if (null == birthday) throw new IllegalArgumentException("Birthday cannot be null");
+        if (null == birthDate) throw new IllegalArgumentException("Birthday cannot be null");
 
         this.name = name;
         this.emailAddress = emailAddress;
-        this.birthday = birthday;
+        this.birthDate = birthDate;
     }
 
     public Name name() {
@@ -24,7 +24,7 @@ public class Person {
     }
 
     public boolean isBirthday(MonthAndDay monthAndDay) {
-        return birthday.sameMonthAndDayAs(monthAndDay);
+        return birthDate.sameMonthAndDayAs(monthAndDay);
     }
 
     // These equals and hash code implementations compare all values; I'm thinking in this case that
@@ -40,7 +40,7 @@ public class Person {
 
         Person person = (Person) o;
 
-        if (!birthday.equals(person.birthday)) return false;
+        if (!birthDate.equals(person.birthDate)) return false;
         if (!emailAddress.equals(person.emailAddress)) return false;
         if (!name.equals(person.name)) return false;
 
@@ -51,7 +51,7 @@ public class Person {
     public int hashCode() {
         int result = name.hashCode();
         result = 31 * result + emailAddress.hashCode();
-        result = 31 * result + birthday.hashCode();
+        result = 31 * result + birthDate.hashCode();
         return result;
     }
 
@@ -59,7 +59,7 @@ public class Person {
     public String toString() {
         return "Person{" +
                 "name=" + name +
-                ", birthday=" + birthday +
+                ", birthDate=" + birthDate +
                 ", emailAddress=" + emailAddress +
                 '}';
     }
