@@ -8,48 +8,76 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import java.util.Random;
-import java.util.Set;
 
 public class BirthdayServiceTest {
+    private static final int LEAP_YEAR = 2004;
+    private static final int REGULAR_YEAR = 2013;
+
+    private static final MonthAndDay FEB_13 = new MonthAndDay(2, 13);
+    private static final MonthAndDay FEB_28 = new MonthAndDay(2, 28);
+    private static final MonthAndDay FEB_29 = new MonthAndDay(2, 29);
+
     @Rule
     public JUnitRuleMockery context = new JUnitRuleMockery();
 
     private final People people = context.mock(People.class);
     private final Notifier notifier = context.mock(Notifier.class);
-    private final BirthdaysEffectiveCalculator calculator = context.mock(BirthdaysEffectiveCalculator.class);
+    private final BirthdayService birthdayService = new BirthdayService(notifier, people);
 
     @Test
-    public void notifiesAllPeopleCalculatedForToday() {
-        final Date anyDate = new Date(2003, 8, 22);
-        final Person aPerson = aUniquePerson();
-        final Person anotherPerson = aUniquePerson();
-
+    public void notifiesAllPeopleWithBirthdaysOnTheGivenDate() {
         context.checking(new Expectations() {
             {
-                // SMELL Two allowings chained together by parameters - the calculator's return value is passed to a argument
-                // for an allowing on the registry call to birthdaysOn.  Something feels funny here... It's like
-                // I'm describing an algorithm *in the test*, but that's not really the point of this test -- I
-                // want to check that all people returned from the registry are notified.
-                Set<MonthAndDay> effectiveDates = Sets.hashSet(new MonthAndDay(8, 22), new MonthAndDay(8, 23));
-                allowing(calculator).birthdaysEffectiveOn(anyDate); will(returnValue(effectiveDates));
-                allowing(people).withBirthdaysOn(effectiveDates); will(returnValue(Sets.hashSet(aPerson, anotherPerson)));
+                Person person1 = aPersonBornOn(FEB_13.inYear(2001));
+                Person person2 = aPersonBornOn(FEB_13.inYear(2004));
+                allowing(people).withBirthdaysOn(Sets.hashSet(FEB_13)); will(returnValue(Sets.hashSet(person1, person2)));
 
-                oneOf(notifier).notify(aPerson);
-                oneOf(notifier).notify(anotherPerson);
+                oneOf(notifier).notify(person1);
+                oneOf(notifier).notify(person2);
             }
         });
-        BirthdayService birthdayService = new BirthdayService(notifier, people, calculator);
-        birthdayService.sendGreetings(anyDate);
+        birthdayService.sendGreetings(FEB_13.inYear(REGULAR_YEAR));
+    }
+
+    @Test
+    public void looksForFeb29BirthdaysInYearWhenItWouldBeMissed() {
+        context.checking(new Expectations() {
+            {
+                // Note the allowing from the previous tests is now an expect since the parameters are the important bit
+                oneOf(people).withBirthdaysOn(Sets.hashSet(FEB_28, FEB_29)); will(returnValue(Sets.hashSet(aPerson())));
+
+                ignoring(notifier);
+            }
+        });
+        birthdayService.sendGreetings(FEB_28.inYear(REGULAR_YEAR));
+    }
+
+    @Test
+    public void looksOnlyForFeb28BirthdaysInLeapYears() {
+        context.checking(new Expectations() {
+            {
+                oneOf(people).withBirthdaysOn(Sets.hashSet(FEB_28)); will(returnValue(Sets.hashSet(aPerson())));
+
+                ignoring(notifier);
+            }
+        });
+        birthdayService.sendGreetings(FEB_28.inYear(LEAP_YEAR));
     }
 
     private static int uniqueCounter = 0;
 
-    private Person aUniquePerson() {
+    private Person aPersonBornOn(Date birthdate) {
+        int uniqueSuffix = uniqueCounter++;
+        return new Person(new Name("firstName", "lastName" + uniqueSuffix), new EmailAddress("whatever" + uniqueSuffix + "@foo.com"), birthdate);
+    }
+
+    private Person aPerson() {
         int uniqueSuffix = uniqueCounter++;
         Random randomGenerator = new Random();
         int randomMonth = randomGenerator.nextInt(11) + 1;
         int randomDay = randomGenerator.nextInt(27) + 1;
-        return new Person(new Name("firstName", "lastName" + uniqueSuffix), new EmailAddress("whatever" + uniqueSuffix + "@foo.com"), new Date(2013, randomMonth, randomDay));
+        MonthAndDay birthDay = new MonthAndDay(randomMonth, randomDay);
+        return new Person(new Name("firstName", "lastName" + uniqueSuffix), new EmailAddress("whatever" + uniqueSuffix + "@foo.com"), birthDay.inYear(2013));
     }
 
 }

@@ -16,6 +16,10 @@ public class MonthAndDay {
         this.dayOfMonth = dayOfMonth;
     }
 
+    public Date inYear(int year) {
+        return new Date(year, monthOfYear, dayOfMonth);
+    }
+
     @SuppressWarnings("RedundantIfStatement")
     @Override
     public boolean equals(Object o) {

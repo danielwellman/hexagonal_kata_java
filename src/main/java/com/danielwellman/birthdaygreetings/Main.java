@@ -21,8 +21,8 @@ public class Main {
 
     public void run() {
         BirthdayService birthdayService = new BirthdayService(new EmailNotifier(this.postOffice),
-                new InMemoryPeople(new FileSystemPeopleSource(this.path)),
-                new ObserveLeapYearBirthdaysEarlyCalculator());
+                new InMemoryPeople(new FileSystemPeopleSource(this.path))
+        );
         birthdayService.sendGreetings(this.calendar.today());
     }
 

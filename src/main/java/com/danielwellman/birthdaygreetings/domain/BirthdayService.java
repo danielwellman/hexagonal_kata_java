@@ -1,25 +1,28 @@
 package com.danielwellman.birthdaygreetings.domain;
 
+import com.danielwellman.birthdaygreetings.conveniences.Sets;
+
 import java.util.Set;
 
 public class BirthdayService {
+    private static final Set<MonthAndDay> FEB_28_AND_29 = Sets.hashSet(MonthAndDay.FEB_28, MonthAndDay.FEB_29);
+
     private final Notifier notifier;
     private final People people;
-    // FUTURE I'm not certain whether this strategy belongs as an internal or injected collaborator.
-    private final BirthdaysEffectiveCalculator birthdaysEffectiveCalculator;
 
-    public BirthdayService(Notifier notifier, People people, BirthdaysEffectiveCalculator calculator) {
+    public BirthdayService(Notifier notifier, People people) {
         this.notifier = notifier;
         this.people = people;
-        this.birthdaysEffectiveCalculator = calculator;
     }
 
     public void sendGreetings(Date today) {
-        Set<MonthAndDay> effectiveDates = birthdaysEffectiveCalculator.birthdaysEffectiveOn(today);
-        Set<Person> people = this.people.withBirthdaysOn(effectiveDates);
-        for (Person person : people) {
+        for (Person person : people.withBirthdaysOn(birthdaysEffectiveOn(today))) {
             notifier.notify(person);
         }
+    }
+
+    public Set<MonthAndDay> birthdaysEffectiveOn(Date date) {
+        return date.wouldMissLeapYear() ? FEB_28_AND_29 : Sets.hashSet(date.monthAndDate());
     }
 
 }
