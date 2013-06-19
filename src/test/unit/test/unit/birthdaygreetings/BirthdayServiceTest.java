@@ -30,8 +30,8 @@ public class BirthdayServiceTest {
     public void notifiesAllPeopleWithBirthdaysOnTheGivenDate() {
         context.checking(new Expectations() {
             {
-                Person person1 = new Person(new Name("person", "one"), new EmailAddress("person_1@mail.com"), FEB_13.inYear(2001));
-                Person person2 = new Person(new Name("person", "two"), new EmailAddress("person_2@mail.com"), FEB_13.inYear(2004));
+                Person person1 = aPersonBornOn(FEB_13.inYear(2001));
+                Person person2 = aPersonBornOn(FEB_13.inYear(2004));
                 allowing(people).withBirthdaysOn(Sets.hashSet(FEB_13)); will(returnValue(Sets.hashSet(person1, person2)));
 
                 oneOf(notifier).notify(person1);
@@ -39,6 +39,10 @@ public class BirthdayServiceTest {
             }
         });
         birthdayService.sendGreetings(FEB_13.inYear(REGULAR_YEAR));
+    }
+
+    private Person aPersonBornOn(Date birthDate) {
+        return new Person(new Name("person", "one"), new EmailAddress("person_1@mail.com"), birthDate);
     }
 
     @Test
