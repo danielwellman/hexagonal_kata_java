@@ -24,7 +24,7 @@ public class BirthdayServiceTest {
 
     private final People people = context.mock(People.class);
     private final Notifier notifier = context.mock(Notifier.class);
-    private final BirthdayService birthdayService = new BirthdayService(notifier, people);
+    private final BirthdayService birthdayService = new BirthdayService(notifier, people, "Bad 1", "Bad 2", "Bad 3", "bad4");
 
     @Test
     public void notifiesAllPeopleWithBirthdaysOnTheGivenDate() {

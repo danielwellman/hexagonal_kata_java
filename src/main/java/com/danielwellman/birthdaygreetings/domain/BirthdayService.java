@@ -9,10 +9,18 @@ public class BirthdayService {
 
     private final Notifier notifier;
     private final People people;
+    private final String bad1;
+    private final String bad2;
+    private final String bad3;
+    private final String bad4;
 
-    public BirthdayService(Notifier notifier, People people) {
+    public BirthdayService(Notifier notifier, People people, String bad1, String bad2, String bad3, String bad4) {
         this.notifier = notifier;
         this.people = people;
+        this.bad1 = bad1;
+        this.bad2 = bad2;
+        this.bad3 = bad3;
+        this.bad4 = bad4;
     }
 
     public void sendGreetings(Date today) {

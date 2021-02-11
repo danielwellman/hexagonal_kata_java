@@ -21,7 +21,7 @@ public class Main {
 
     public void run() {
         BirthdayService birthdayService = new BirthdayService(new EmailNotifier(this.postOffice),
-                new InMemoryPeople(new FileSystemPeopleSource(this.path))
+                new InMemoryPeople(new FileSystemPeopleSource(this.path)), "Bad 1", "Bad 2", "Bad 3", "bad4"
         );
         birthdayService.sendGreetings(this.calendar.today());
     }
